@@ -11,6 +11,11 @@ const routes = [
     name: 'About',
     component: () => import('@/pages/about/AboutPage.vue'),
   },
+  {
+    path: '/orders-create',
+    name: 'OrdersCreate',
+    component: () => import('@/pages/orders-create/dish-detail/IngredientsComponent.vue')
+  },
 ]
 
 const router = createRouter({
