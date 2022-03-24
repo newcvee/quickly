@@ -48,8 +48,8 @@ class DishRepository:
         name = data["name"],
         img = data ["img"])
 
-    def save(self, info):
-        sql = """insert into info (dish_id, name, img) values (
+    def save(self, dish):
+        sql = """insert into dish (dish_id, name, img) values (
             :dish_id, :name, :img
         ) """
         conn = self.create_conn()
