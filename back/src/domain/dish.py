@@ -2,13 +2,13 @@ import sqlite3
 
 
 class Dish:
-    def __init__(self, dish_id, name, img):
-        self.dish_id = dish_id
+    def __init__(self, id, name, img):
+        self.id = id
         self.name = name
         self.img = img
 
     def to_dict(self):
-        return {"dish_id": self.dish_id,
+        return {"id": self.id,
         "name": self.name,
         "img": self.img}
 
@@ -26,7 +26,7 @@ class DishRepository:
     def init_tables(self):
         sql = """
             create table if not exists dish (
-                dish_id VARCHAR PRIMARY KEY,
+                id VARCHAR PRIMARY KEY,
                 name VARCHAR,
                 img VARCHAR
             )
@@ -44,13 +44,13 @@ class DishRepository:
 
         data = cursor.fetchone()
 
-        return Dish(dish_id=data["dish_id"],
+        return Dish(id=data["id"],
         name = data["name"],
         img = data ["img"])
 
     def save(self, dish):
-        sql = """insert into dish (dish_id, name, img) values (
-            :dish_id, :name, :img
+        sql = """insert into dish (id, name, img) values (
+            :id, :name, :img
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
