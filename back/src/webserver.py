@@ -22,6 +22,15 @@ def create_app(repositories):
     def dish_get():
         dish = repositories["dish"].get_dish()
         return object_to_json(dish)
+    
+    @app.route("/api/dishes/<id>", methods=["GET"])
+    def dish_get_by_id(id):
+        dish = repositories["dish"].get_dish_by_id(id)
+
+        if id == dish.id:
+            return object_to_json(dish), 200
+        else:
+            return "", 403
 
 
     return app

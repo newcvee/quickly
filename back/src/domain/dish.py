@@ -48,6 +48,21 @@ class DishRepository:
         name = data["name"],
         img = data ["img"])
 
+    def get_dish_by_id(self, id):
+        sql = """SELECT * FROM dish WHERE id=:id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id": id})
+
+        data = cursor.fetchone()
+
+        if data is not None:
+            dish = Dish(**data)
+        else:
+            dish = None
+            
+        return dish
+
     def save(self, dish):
         sql = """insert into dish (id, name, img) values (
             :id, :name, :img
