@@ -36,7 +36,7 @@ class DishRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_info(self):
+    def get_dish(self):
         sql = """select * from dish"""
         conn = self.create_conn()
         cursor = conn.cursor()
