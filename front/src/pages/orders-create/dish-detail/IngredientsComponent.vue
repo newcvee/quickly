@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>{{ ingredients.name }}</h1>
+  <div>
+    <h1>{{ ingredient.name }}</h1>
     <section class="counters">
       <Counter
         :initialValue="IngredientCounterPage"
@@ -11,13 +11,14 @@
 </template>
 
 <script>
+
 import Counter from "./IngredientCounterPage.vue";
 
 export default {
   name: "Ingredients",
   components: { Counter },
   props: {
-    contact: {
+    ingredients: {
       type: Object,
       required: true,
     },
@@ -26,13 +27,10 @@ export default {
     return {
       title: "This is the home page!",
       IngredientCounterPage: "with",
-      // ingredients= {}
+      
     };
   },
-  // mounted() {
-  //   this.loadData()
-  //   console.log(this.loadData)
-  // },
+  
 
   computed: {
     animals() {
@@ -43,9 +41,7 @@ export default {
     ingredientChanged(counterValue) {
       this.cows = counterValue;
     },
-    // async loadData() {
-    //   this.dish = await getDish();
-    // },
+    
   },
   
 };

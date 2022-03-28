@@ -34,7 +34,16 @@ export async function getDish() {
       
     };
     const response = await fetch(`${config.API_PATH}/dishes/1`, settings);
-    const contacts = await response.json();
-    return contacts;
-  }
+    const dish = await response.json();
+    return dish;
+}
+export async function getIngredientByDish() {
+    const settings = {
+      method: "GET",
+      
+    };
+    const response = await fetch(`${config.API_PATH}/dish/ingredients/1`, settings);
+    const ingredients = await response.json();
+    return ingredients;
+}
   

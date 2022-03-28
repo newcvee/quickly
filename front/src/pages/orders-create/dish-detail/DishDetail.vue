@@ -3,12 +3,13 @@
     <li>{{dish.name}}</li>
     <li>{{dish.img}}</li>
 </ul>
-<Ingredients />
+<Ingredients v-for="ingredient in ingredients" :key="ingredient.dish_id" :ingredient="ingredient"/>
   
 </template>
 
 <script>
 import { getDish } from "@/services/api.js";
+import { getIngredientByDish } from "@/services/api.js";
 import Ingredients from "./IngredientCounterPage.vue"
 
 
@@ -18,15 +19,21 @@ export default {
   data() {
     return {
       dish: {},
+      ingredients: {}
     };
   },
   mounted() {
     this.loadData()
-    console.log(this.loadData)
+    this.loadIngredients()
+    
   },
   methods: {
     async loadData() {
       this.dish = await getDish();
+    },
+    async loadIngredients() {
+      this.ingredients = await getIngredientByDish();
+      
     },
   },
 
