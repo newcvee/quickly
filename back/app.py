@@ -1,12 +1,14 @@
 import sqlite3
 from src.webserver import create_app
 from src.domain.dish import DishRepository
+from src.domain.ingredients import IngredientsRepository
 
 
 database_path = "data/database.db"
 
 repositories = {
     "dish": DishRepository(database_path),
+    "ingredients": IngredientsRepository(database_path)
 }
 
 app = create_app(repositories)

@@ -13,7 +13,8 @@ ingredients_repository = IngredientsRepository(database_path)
 
 
 
-first_dish= Dish(id= "1",
+first_dish= Dish(id= "
+1",
 name = "burguer",
 img = "https://www.bing.com/images/search?q=Burger&FORM=IQFRBA&id=EF2980334DB78C2CB72A7F857CEF3E4A60287C95",
 )

@@ -60,3 +60,28 @@ class IngredientsRepository:
         cursor = conn.cursor()
         cursor.execute(sql, ingredients.to_dict())
         conn.commit()
+
+    def get_ingredients_by_dish_id(self,dish_id):
+        sql = """SELECT * FROM ingredients WHERE dish_id = :dish_id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"dish_id": dish_id})
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            ingredient = Ingredients(**item)
+            result.append(ingredient)
+        
+        return result
+    
+    # def get_ingredients_by_dish_id(self, dish_id):
+    #     sql = """SELECT * FROM dish WHERE dish_id=:dish_id"""
+    #     conn = self.create_conn()
+    #     cursor = conn.cursor()
+    #     cursor.execute(sql, {"dish_id": dish_id})
+
+    #     data = cursor.fetchall()
+
+    #     ingredients = [Ingredients(**item) for item in data]
+    #     return ingredients
+        
