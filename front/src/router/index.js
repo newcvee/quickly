@@ -16,6 +16,11 @@ const routes = [
     name: 'OrdersCreate',
     component: () => import('@/pages/orders-create/dish-detail/IngredientsComponent.vue')
   },
+  {
+    path: '/dishes/:id',
+    name: 'DishDetail',
+    component: () => import('@/pages/orders-create/dish-detail/DishDetail.vue')
+  },
 ]
 
 const router = createRouter({
