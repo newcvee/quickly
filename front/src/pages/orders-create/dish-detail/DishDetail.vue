@@ -1,9 +1,9 @@
 <template>
 <ul>
-    <li>{{dish.name}}</li>
+    <li class="name">{{dish.name}}</li>
     <li>{{dish.img}}</li>
 </ul>
-<Ingredients v-for="ingredient in ingredients" :key="ingredient.dish_id" :ingredient="ingredient"/>
+<Ingredients class="ingredients"  v-for="ingredient in ingredients" :key="ingredient.name" />
   
 </template>
 
@@ -41,5 +41,15 @@ export default {
 </script>
 
 <style>
+li{
+  list-style: none;
+}
+.name{
+  font-size: 5em;
+}
+.ingredients{
+  width: 10px;
+  padding: 0%;
+}
 
 </style>

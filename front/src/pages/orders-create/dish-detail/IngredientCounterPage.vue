@@ -49,17 +49,25 @@ export default {
 
 <style scoped>
 .counter {
-  padding: 1em;
-  width: 30%;
+  padding: 0px;
+  width: 30px;
   font-size: 3em;
 }
 .counter .buttons {
   display: flex;
-  width: 30%;
-  justify-content: space-between;
+  
+  width: 10px;
+ 
+  font-size: 10px;
 }
-.counter button {
+h2{
+  padding: 10px;
+ 
   font-size: 1em;
-  padding: 0 1em;
 }
+.counter .button {
+  display: flex;
+  width: 10px;
+}
+
 </style>

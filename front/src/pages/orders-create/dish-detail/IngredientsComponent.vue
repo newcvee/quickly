@@ -1,12 +1,13 @@
 <template>
   <div>
-    <h1>{{ ingredient.name }}</h1>
+    
     <section class="counters">
       <Counter
         :initialValue="IngredientCounterPage"
         @value-changed="ingredientsChanged"
       />
     </section>
+    <h1>{{ ingredients }}</h1>
   </div>
 </template>
 
@@ -19,9 +20,10 @@ export default {
   components: { Counter },
   props: {
     ingredients: {
-      type: Object,
+      type: String,
       required: true,
     },
+    
   },
   data() {
     return {
@@ -56,5 +58,7 @@ h1 {
 .counters {
   display: flex;
   gap: 1em;
+  width: 10px;
+  padding: 0%;
 }
 </style>
