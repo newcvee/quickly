@@ -18,9 +18,23 @@ categories_repository = CategoriesRepository(database_path)
 
 first_dish= Dish(id= "1",
 name = "burguer",
-img = "https://www.bing.com/images/search?q=Burger&FORM=IQFRBA&id=EF2980334DB78C2CB72A7F857CEF3E4A60287C95",
+img = "h7CEF3E4A60287C95",
+category = "2"
+)
+second_dish= Dish(id= "2",
+name = "milkshake",
+img = "h7CEF3E4A60287C95",
+category = "1"
+)
+third_dish= Dish(id= "3",
+name = "burguer + milkshake + ",
+img = "h7CEF3E4A60287C95",
+category = "3"
 )
 
+dish_repository.save(first_dish)
+dish_repository.save(second_dish)
+dish_repository.save(third_dish)
 
 first_dish_ingr_one= Ingredients( ingr_id= "1",
 dish_id="1",
@@ -38,7 +52,7 @@ name= "cheese",
 state="with")
 
 
-dish_repository.save(first_dish)
+
 ingredients_repository.save_ingr(first_dish_ingr_one)
 ingredients_repository.save_ingr(first_dish_ingr_two)
 ingredients_repository.save_ingr(first_dish_ingr_three)
