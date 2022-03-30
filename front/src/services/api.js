@@ -28,6 +28,17 @@
 
 import config from "@/config.js"
 
+
+export async function getCategories() {
+  const settings = {
+    method: "GET",
+    
+  };
+  const response = await fetch(`${config.API_PATH}/categories`, settings);
+  const categories = await response.json();
+  return categories;
+}
+
 export async function getDish() {
     const settings = {
       method: "GET",

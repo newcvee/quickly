@@ -12,15 +12,21 @@ const routes = [
     component: () => import('@/pages/about/AboutPage.vue'),
   },
   {
-    path: '/orders-create',
-    name: 'OrdersCreate',
-    component: () => import('@/pages/orders-create/dish-detail/IngredientsComponent.vue')
+    path: '/Categories',
+    name: 'Categories',
+    component: () => import('@/pages/orders-create/categories/CategoriesPage.vue')
   },
   {
     path: '/dishes/:id',
-    name: 'DishDetail',
-    component: () => import('@/pages/orders-create/dish-detail/DishDetail.vue')
+    name: 'OrdersCreate',
+    component: () => import('@/pages/orders-create/dish-detail/IngredientCounterPage.vue')
   },
+  {
+    path: '/Thanks',
+    name: 'OrdersThanks',
+    component: () => import('@/pages/orders-create/dish-detail/ThanksPage.vue')
+  },
+  
 ]
 
 const router = createRouter({
