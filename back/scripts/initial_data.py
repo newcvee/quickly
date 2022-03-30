@@ -55,7 +55,7 @@ second_category = Categories(
 )
 third_category = Categories(
     category_id = "3",
-    name= "menus",
+    name= "Menus",
     image= "hello"
 )
 

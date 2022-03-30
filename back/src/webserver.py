@@ -4,6 +4,7 @@ from flask_cors import CORS
 from src.lib.utils import object_to_json
 from src.domain.dish import Dish
 from src.domain.ingredients import Ingredients
+from src.domain.categories import Categories
 
 
 def create_app(repositories):
@@ -37,6 +38,11 @@ def create_app(repositories):
     def get_ingredients_by_dish(dish_id):
         dish_ingredients = repositories["ingredients"].get_ingredients_by_dish_id(dish_id)
         return object_to_json(dish_ingredients), 200
+
+    @app.route("/api/categories", methods=["GET"])
+    def categories_get():
+        all_categories = repositories["categories"].get_categories()
+        return object_to_json(all_categories), 200
 
 
     return app

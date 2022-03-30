@@ -1,4 +1,5 @@
 import sqlite3
+from unicodedata import category
 
 
 class Categories:
@@ -42,10 +43,19 @@ class CategoriesRepository:
         cursor = conn.cursor()
         cursor.execute(sql)
 
-        data = cursor.fetchone()
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            category = Categories(**item)
+            result.append(category)
+        
+        return result
 
-        return Categories(category_id=data["category_id"],
-        name = data["name"],)
+        # data = cursor.fetchone()
+
+        # return Categories(category_id=data["category_id"],
+        # name = data["name"],
+        # image = data["image"])
 
     def save_category(self, categories):
         sql = """insert into categories (category_id,name, image) values (
