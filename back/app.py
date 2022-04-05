@@ -8,7 +8,7 @@ from src.domain.categories import CategoriesRepository
 database_path = "data/database.db"
 
 repositories = {
-    "dish": DishRepository(database_path),
+    "dishes": DishRepository(database_path),
     "ingredients": IngredientsRepository(database_path),
     "categories": CategoriesRepository(database_path)
 }

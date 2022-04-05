@@ -1,3 +1,4 @@
+from unicodedata import category
 from flask import Flask
 from flask_cors import CORS
 
@@ -17,17 +18,32 @@ def create_app(repositories):
     
     @app.route("/api/dishes", methods=["GET"])
     def dish_get():
-        dish = repositories["dish"].get_dish()
-        return object_to_json(dish)
+        dishes = repositories["dishes"].get_dishes()
+        return object_to_json(dishes)
+
+    @app.route("/api/alldishes/<category>", methods=["GET"])
+    def dish_get_all(category):
+        all_dish = repositories["dishes"].get_dishes_by_category(category)
+        return object_to_json(all_dish)
     
     @app.route("/api/dishes/<id>", methods=["GET"])
     def dish_get_by_id(id):
-        dish = repositories["dish"].get_dish_by_id(id)
+        dishes = repositories["dishes"].get_dishes_by_id(id)
 
-        if id == dish.id:
-            return object_to_json(dish), 200
+        if id == dishes.id:
+            return object_to_json(dishes), 200
         else:
             return "", 403
+
+    @app.route("/api/category/dishes/<category_id>", methods=["GET"]) 
+    def dish_get_by_category(category_id):
+        dishes_by_category = repositories["dishes"].get_dishes_by_category(category_id)
+        return object_to_json(dishes_by_category), 200
+
+        # if category_id == dishes.category_id:
+            
+        # else:
+        #     return "", 403
     
     @app.route("/api/ingredients", methods=["GET"])
     def ingredients_get():

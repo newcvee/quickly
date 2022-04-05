@@ -19,17 +19,17 @@ categories_repository = CategoriesRepository(database_path)
 first_dish= Dish(id= "1",
 name = "burguer",
 img = "h7CEF3E4A60287C95",
-category = "2"
+category_id = "2"
 )
 second_dish= Dish(id= "2",
 name = "milkshake",
 img = "h7CEF3E4A60287C95",
-category = "1"
+category_id = "1"
 )
 third_dish= Dish(id= "3",
 name = "burguer + milkshake + ",
 img = "h7CEF3E4A60287C95",
-category = "3"
+category_id = "3"
 )
 
 dish_repository.save(first_dish)

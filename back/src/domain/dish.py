@@ -1,18 +1,19 @@
 import sqlite3
+from unicodedata import category, name
 
 
 class Dish:
-    def __init__(self, id, name, img, category):
+    def __init__(self, id, name, img, category_id):
         self.id = id
         self.name = name
         self.img = img
-        self.category = category
+        self.category_id = category_id
 
     def to_dict(self):
         return {"id": self.id,
         "name": self.name,
         "img": self.img,
-        "category": self.category}
+        "category_id": self.category_id}
 
 
 class DishRepository:
@@ -27,11 +28,11 @@ class DishRepository:
 
     def init_tables(self):
         sql = """
-            create table if not exists dish (
+            create table if not exists dishes (
                 id VARCHAR PRIMARY KEY,
                 name VARCHAR,
                 img VARCHAR,
-                category VARCHAR
+                category_id NUMERIC
             )
         """
         conn = self.create_conn()
@@ -39,8 +40,8 @@ class DishRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_dish(self):
-        sql = """select * from dish"""
+    def get_dishes(self):
+        sql = """select * from dishes"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
@@ -52,8 +53,8 @@ class DishRepository:
         img = data["img"],
         category = data["category"])
 
-    def get_dish_by_id(self, id):
-        sql = """SELECT * FROM dish WHERE id=:id"""
+    def get_dishes_by_id(self, id):
+        sql = """SELECT * FROM dishes WHERE id=:id"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql, {"id": id})
@@ -61,17 +62,35 @@ class DishRepository:
         data = cursor.fetchone()
 
         if data is not None:
-            dish = Dish(**data)
+            dishes = Dish(**data)
         else:
-            dish = None
+            dishes = None
             
-        return dish
+        return dishes
+    def get_dishes_by_category(self, category_id):
+        # sql = """SELECT * FROM dishes WHERE category_id=:category_id"""
+        sql = """SELECT *
+            FROM dishes
+            WHERE category_id = :category_id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"category_id": category_id})
 
-    def save(self, dish):
-        sql = """insert into dish (id, name, img, category) values (
-            :id, :name, :img, :category
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            dishes = Dish(**item)
+            result.append(dishes)
+        
+        return result
+
+    def save(self, dishes):
+        sql = """insert into dishes (id, name, img, category_id) values (
+            :id, :name, :img, :category_id
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, dish.to_dict())
+        cursor.execute(sql, dishes.to_dict())
         conn.commit()
+
+        
