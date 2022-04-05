@@ -20,11 +20,6 @@ def create_app(repositories):
     def dish_get():
         dishes = repositories["dishes"].get_dishes()
         return object_to_json(dishes)
-
-    # @app.route("/api/alldishes/<category>", methods=["GET"])
-    # def dish_get_all(category):
-    #     all_dish = repositories["dishes"].get_dishes_by_category(category)
-    #     return object_to_json(all_dish)
     
     @app.route("/api/dishes/<id>", methods=["GET"])
     def dish_get_by_id(id):
@@ -39,11 +34,6 @@ def create_app(repositories):
     def dishes_by_category(category_id):
         all_dishes_by_category = repositories["dishes"].dishes_categories(category_id)
         return object_to_json(all_dishes_by_category), 200
-
-    # @app.route("/api/category/dishes/<category_id>", methods=["GET"]) 
-    # def dish_get_by_category(category_id):
-    #     dishes_by_category = repositories["dishes"].dishes_categories(category_id)
-    #     return object_to_json(dishes_by_category), 200
 
     
     @app.route("/api/ingredients", methods=["GET"])
