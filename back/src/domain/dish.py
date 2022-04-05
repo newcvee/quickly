@@ -32,7 +32,8 @@ class DishRepository:
                 id VARCHAR PRIMARY KEY,
                 name VARCHAR,
                 img VARCHAR,
-                category_id NUMERIC
+                category_id NUMERIC FOREING KEY 
+                REFERENCES categories (category_id)
             )
         """
         conn = self.create_conn()
@@ -67,14 +68,24 @@ class DishRepository:
             dishes = None
             
         return dishes
-    def get_dishes_by_category(self, category_id):
+    # def create_view(self):
+    #     sql = """ create view as SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
+    #     conn = self.create_conn()
+    #     cursor = conn.cursor()
+    #     cursor.execute(sql)
+    # crear view y luego usarla para endpoint
+
+    def get_dishes_by_category(self):
         # sql = """SELECT * FROM dishes WHERE category_id=:category_id"""
-        sql = """SELECT *
-            FROM dishes
-            WHERE category_id = :category_id"""
+        # sql = """SELECT *
+        #     FROM dishes
+        #     WHERE category_id =(SELECT name FROM categories WHERE category_id = :category_id)"""
+        # sql = """SELECT * FROM dishes INNER JOIN categories USING category_id """
+        # sql = """SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
+        sql = """SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, {"category_id": category_id})
+        cursor.execute(sql)
 
         data = cursor.fetchall()
         result = []
