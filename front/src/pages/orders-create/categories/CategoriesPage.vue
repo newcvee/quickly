@@ -1,6 +1,6 @@
 <template>
   <p>hello</p>
-  <section class="card" v-for="category in categories" :key="category.id">
+  <section class="card" v-for="category in categories" :key="category.category_id">
       <article class="category-card" @click="enterCategory">
           {{category.name}}
           {{category.image}}
@@ -15,19 +15,25 @@ export default {
     data(){
         return { 
             categories: {},
+            
             };
     },
     mounted() {
         this.loadCategories();
+        
     },
     methods: {
         async loadCategories() {
             this.categories = await getCategories();
         },
+        
         enterCategory(){
-            this.$router.push("/thanks")
-            // this.$router.push("/events/" + event.id)
+            
+            
+            this.$router.push("/category/dishes")
         }
+   
+
     }
 }
 </script>

@@ -12,9 +12,14 @@ const routes = [
     component: () => import('@/pages/about/AboutPage.vue'),
   },
   {
-    path: '/Categories',
+    path: '/categories',
     name: 'Categories',
     component: () => import('@/pages/orders-create/categories/CategoriesPage.vue')
+  },
+  {
+    path: '/category/dishes',
+    name: 'Dishes',
+    component: () => import('@/pages/orders-create/dishes/DishesPage.vue')
   },
   {
     path: '/dishes/:id',

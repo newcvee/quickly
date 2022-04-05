@@ -1,23 +1,36 @@
 <template>
-  <section class="counter">
-    <section class="buttons">
+  <div>
+    <h1>{{dish.name}}</h1>
+    <img alt="foto" :src="dish.img" />
+    <p>{{dish.img}}</p>
+  </div>
+  <section class="counter" v-for="ingredient in ingredients" :key="ingredient.dish_id">
+    <section class="buttons" >
       <button @click="onMinusClicked">-</button>
       <h2>{{ counter }}</h2>
       <button @click="onAddClicked">+</button>
     </section>
+    <p class="ingredient">{{ingredient.name}}</p>
   </section>
+  <button>Añande al carrito</button>
 </template>
 
 <script>
+import { getDish } from "@/services/api.js";
+import { getIngredientByDish } from "@/services/api.js";
+
 export default {
   name: "Counter",
-  props: {
-    initialValue: { type: String, default: "with" },
-  },
   data() {
     return {
-      counter: this.initialValue,
+      counter: "with" ,
+      dish: {},
+      ingredients: {}
     };
+  },
+  mounted() {
+    this.loadData()
+    this.loadIngredients()
   },
   methods: {
     onAddClicked() {
@@ -43,6 +56,18 @@ export default {
       }
       
     },
+    async loadData() {
+      this.dish = await getDish();
+    },
+    async loadIngredients() {
+      this.ingredients = await getIngredientByDish();
+      
+    },
+    CounterValue(){
+      let InitialValue= "with"
+      console.log(InitialValue)
+    }
+
   },
 };
 </script>
@@ -50,20 +75,30 @@ export default {
 <style scoped>
 .counter {
   padding: 0px;
-  width: 30px;
+  width: fit-content;
   font-size: 3em;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+.ingredient {
+  font-size:0.3em;
+  float:left;
+  margin: 50px;
 }
 .counter .buttons {
   display: flex;
+  flex-direction:row;
   
-  width: 10px;
+  width: 1em;
+  height: 1em;
  
-  font-size: 10px;
+  font-size: 1em;
+  margin: 10px;
 }
 h2{
   padding: 10px;
- 
-  font-size: 1em;
+  font-size: 0.3em;
 }
 .counter .button {
   display: flex;
