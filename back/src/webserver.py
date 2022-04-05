@@ -34,11 +34,16 @@ def create_app(repositories):
             return object_to_json(dishes), 200
         else:
             return "", 403
+    
+    @app.route("/api/category/dishes/<category_id>", methods=["GET"])
+    def dishes_by_category(category_id):
+        all_dishes_by_category = repositories["dishes"].dishes_categories(category_id)
+        return object_to_json(all_dishes_by_category), 200
 
-    @app.route("/api/category/dishes/<category_id>", methods=["GET"]) 
-    def dish_get_by_category():
-        dishes_by_category = repositories["dishes"].get_dishes_by_category()
-        return object_to_json(dishes_by_category), 200
+    # @app.route("/api/category/dishes/<category_id>", methods=["GET"]) 
+    # def dish_get_by_category(category_id):
+    #     dishes_by_category = repositories["dishes"].dishes_categories(category_id)
+    #     return object_to_json(dishes_by_category), 200
 
     
     @app.route("/api/ingredients", methods=["GET"])

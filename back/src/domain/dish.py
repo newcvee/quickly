@@ -52,7 +52,7 @@ class DishRepository:
         return Dish(id=data["id"],
         name = data["name"],
         img = data["img"],
-        category = data["category"])
+        category_id = data["category_id"])
 
     def get_dishes_by_id(self, id):
         sql = """SELECT * FROM dishes WHERE id=:id"""
@@ -68,24 +68,17 @@ class DishRepository:
             dishes = None
             
         return dishes
-    # def create_view(self):
-    #     sql = """ create view as SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
-    #     conn = self.create_conn()
-    #     cursor = conn.cursor()
-    #     cursor.execute(sql)
-    # crear view y luego usarla para endpoint
+    
+    def dishes_categories(self, category_id):
+        sql = """SELECT dishes.id, dishes.name, dishes.img,dishes.category_id
+        FROM dishes 
+        INNER JOIN categories ON dishes.category_id = categories.category_id
+        WHERE categories.category_id = :category_id
+        """
 
-    def get_dishes_by_category(self):
-        # sql = """SELECT * FROM dishes WHERE category_id=:category_id"""
-        # sql = """SELECT *
-        #     FROM dishes
-        #     WHERE category_id =(SELECT name FROM categories WHERE category_id = :category_id)"""
-        # sql = """SELECT * FROM dishes INNER JOIN categories USING category_id """
-        # sql = """SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
-        sql = """SELECT * FROM dishes, categoriesI WHERE  dishes.category_id = categories.category_id"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql)
+        cursor.execute(sql, {"category_id": category_id})
 
         data = cursor.fetchall()
         result = []
