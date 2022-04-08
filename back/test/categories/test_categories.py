@@ -5,7 +5,7 @@ from src.webserver import create_app
 from src.domain.categories import CategoriesRepository, Categories
 
 
-def test_should_return_empty_list_of_users():
+def test_should_return_empty_list_of_categories():
     categories_repository = CategoriesRepository(temp_file())
     app = create_app(repositories={"categories": categories_repository})
     client = app.test_client()
@@ -52,7 +52,6 @@ def test_should_return_list_of_categories():
             "category_id" : "1",
             "name": "Drinks",
             "image": "hello"
-            
         },
         {
             "category_id" : "2",
