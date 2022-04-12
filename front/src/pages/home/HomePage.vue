@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="@/assets/img/logo.png" />
-    <h1>{{ info.app_name }}</h1>
+    <button @click="goToCategories">START ORDER</button>
   </div>
 </template>
 
@@ -21,6 +20,9 @@ export default {
     async loadData() {
       const response = await fetch('http://localhost:5000/api/info')
       this.info = await response.json()
+    },
+    goToCategories(){
+      this.$router.push("/categories")
     }
   }
 

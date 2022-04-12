@@ -87,7 +87,7 @@ class DishRepository:
             result.append(dishes)
         
         return result
-
+    
     def save(self, dishes):
         sql = """insert into dishes (id, name, img, category_id) values (
             :id, :name, :img, :category_id

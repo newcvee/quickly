@@ -34,6 +34,11 @@ def create_app(repositories):
     def dishes_by_category(category_id):
         all_dishes_by_category = repositories["dishes"].dishes_categories(category_id)
         return object_to_json(all_dishes_by_category), 200
+    
+    @app.route("/api/allcategories", methods=["GET"])
+    def all_categories():
+        all_categories = repositories["categories"].get_the_categories()
+        return object_to_json(all_categories), 200
 
     
     @app.route("/api/ingredients", methods=["GET"])

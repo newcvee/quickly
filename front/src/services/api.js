@@ -1,31 +1,3 @@
-// import config from "@/config.js";
-
-// export async function getDish(id) {
-//     const settings = {
-//       method: "GET",
-//       headers: {
-//         Authorization: getUserId(),
-//       },
-//     };
-//     const response = await fetch(`${config.API_PATH}/contacts/${id}`, settings);
-//     return await response.json();
-// }
-
-
-
-
-// export async function getDish(id) {
-// const settings = {
-//     method: "GET",
-    
-// };
-// const response = await fetch(`${config.APºI_PATH}/dishes/${id}`, settings);
-// console.log(response)
-// return await response.json();
-// }
-
-
-
 import config from "@/config.js"
 
 
@@ -40,7 +12,7 @@ export async function getCategories() {
 }
 
 export async function getDish() {
-    const settings = {
+  const settings = {
       method: "GET",
       
     };

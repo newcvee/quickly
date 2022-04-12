@@ -1,7 +1,7 @@
 <template>
   <p>hello</p>
   <section class="card" v-for="category in categories" :key="category.category_id">
-      <article class="category-card" @click="enterCategory">
+      <article class="category-card" @click="enterCategory(category)">
           {{category.name}}
           {{category.image}}
       </article>
@@ -27,10 +27,8 @@ export default {
             this.categories = await getCategories();
         },
         
-        enterCategory(){
-            
-            
-            this.$router.push("/category/dishes")
+        enterCategory(category){            
+         this.$router.push("/category/dishes/" + category.category_id)
         }
    
 

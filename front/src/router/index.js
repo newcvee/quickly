@@ -17,7 +17,7 @@ const routes = [
     component: () => import('@/pages/orders-create/categories/CategoriesPage.vue')
   },
   {
-    path: '/category/dishes',
+    path: '/category/dishes/:category_id',
     name: 'Dishes',
     component: () => import('@/pages/orders-create/dishes/DishesPage.vue')
   },

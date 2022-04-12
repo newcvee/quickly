@@ -50,13 +50,26 @@ class CategoriesRepository:
             result.append(category)
         
         return result
+    
+    def get_the_categories(self):
+        sql = """SELECT categories.category_id,categories.name, categories.image, dishes.category_id
+        FROM categories
+        INNER JOIN dishes ON categories.category_id = dishes.category_id
+        """
 
-        # data = cursor.fetchone()
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql)
 
-        # return Categories(category_id=data["category_id"],
-        # name = data["name"],
-        # image = data["image"])
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            dishes = Categories(**item)
+            result.append(dishes)
+        
+        return result
 
+       
     def save_category(self, categories):
         sql = """insert into categories (category_id,name, image) values (
             :category_id,:name, :image
@@ -66,27 +79,4 @@ class CategoriesRepository:
         cursor.execute(sql, categories.to_dict())
         conn.commit()
 
-    # def get_ingredients_by_dish_id(self,dish_id):
-    #     sql = """SELECT * FROM ingredients WHERE dish_id = :dish_id"""
-    #     conn = self.create_conn()
-    #     cursor = conn.cursor()
-    #     cursor.execute(sql, {"dish_id": dish_id})
-    #     data = cursor.fetchall()
-    #     result = []
-    #     for item in data:
-    #         ingredient = Ingredients(**item)
-    #         result.append(ingredient)
-        
-    #     return result
-    
-    # def get_ingredients_by_dish_id(self, dish_id):
-    #     sql = """SELECT * FROM dish WHERE dish_id=:dish_id"""
-    #     conn = self.create_conn()
-    #     cursor = conn.cursor()
-    #     cursor.execute(sql, {"dish_id": dish_id})
-
-    #     data = cursor.fetchall()
-
-    #     ingredients = [Ingredients(**item) for item in data]
-    #     return ingredients
-        
+  
