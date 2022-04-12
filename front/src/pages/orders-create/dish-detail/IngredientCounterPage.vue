@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{dish.name}}</h1>
-    <img alt="foto" :src="dish.img" />
+    <h1>{{dish.name}}hey</h1>
+    <!-- <img alt="foto" :src="dish.img" /> -->
     <p>{{dish.img}}</p>
   </div>
   <section class="counter" v-for="ingredient in ingredients" :key="ingredient.dish_id">
@@ -13,10 +13,11 @@
     <p class="ingredient">{{ingredient.name}}</p>
   </section>
   <button>Añande al carrito</button>
+  {{$data}}
 </template>
 
 <script>
-import { getDish } from "@/services/api.js";
+import { getDishById } from "@/services/api.js";
 import { getIngredientByDish } from "@/services/api.js";
 
 export default {
@@ -57,7 +58,8 @@ export default {
       
     },
     async loadData() {
-      this.dish = await getDish();
+      let DishId = this.$route.params.id;
+      this.dish = await getDishById(DishId);
     },
     async loadIngredients() {
       this.ingredients = await getIngredientByDish();

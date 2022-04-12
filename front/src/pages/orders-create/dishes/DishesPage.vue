@@ -1,6 +1,6 @@
 <template>
 <p>hellouuu</p>
-<section class="card" v-for="dish in dishes" :key="dish.category_id">
+<section class="card" v-for="dish in dishes" :key="dish.category_id" @click="enterDishDetail(dish)" >
 <p>{{dish.img}}</p>
 <p>{{dish.name}}</p>
 </section>
@@ -22,6 +22,9 @@ export default {
         async loadDishes() {
             let categoryId = this.$route.params.category_id;
             this.dishes = await getDishesByCategory(categoryId);
+        },
+        enterDishDetail(dish){            
+         this.$router.push("/dishes/" + dish.id)
         },
         
     }

@@ -38,4 +38,12 @@ export async function getDishesByCategory(category_id) {
   const dishes = await response.json();
   return dishes;
 }
+export async function getDishById(id) {
+  const settings = {
+    method: "GET",
+  };
+  const response = await fetch(`${config.API_PATH}/dishes/${id}`, settings);
+  const dish = await response.json();
+  return dish;
+}
   
