@@ -8,11 +8,14 @@ database_path = "data/database.db"
 from src.domain.dish import Dish, DishRepository
 from src.domain.ingredients import Ingredients, IngredientsRepository
 from src.domain.categories import Categories, CategoriesRepository
+from src.domain.orders import Order, OrdersRepository
+
 
 
 dish_repository = DishRepository(database_path)
 ingredients_repository = IngredientsRepository(database_path)
 categories_repository = CategoriesRepository(database_path)
+orders_repository = OrdersRepository(database_path)
 
 
 
@@ -95,3 +98,13 @@ third_category = Categories(
 categories_repository.save_category(first_category)
 categories_repository.save_category(second_category)
 categories_repository.save_category(third_category)
+
+
+first_order = Order(
+    order_id = "first_order",
+    item_id = "5"  ,
+    item_name = "taco bell"  ,
+    item_price = "10.95"  
+)
+
+orders_repository.save_order(first_order)
