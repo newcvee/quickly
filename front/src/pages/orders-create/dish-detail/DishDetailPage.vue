@@ -16,9 +16,7 @@ export default {
   name: "Counter",
   data() {
     return {
-      counter: "with" ,
       dish: {},
-      ingredients: {}
     };
   },
   mounted() {

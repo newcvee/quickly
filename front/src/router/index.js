@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/dishes/:id',
     name: 'OrdersCreate',
-    component: () => import('@/pages/orders-create/dish-detail/IngredientCounterPage.vue')
+    component: () => import('@/pages/orders-create/dish-detail/DishDetailPage.vue')
   },
   {
     path: '/Thanks',
