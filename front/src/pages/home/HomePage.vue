@@ -8,11 +8,6 @@
 
 export default {
   name: 'Home',
-  data() {
-    return {
-      info: {}
-    }
-  },
   mounted() {
     this.loadData()
   },
