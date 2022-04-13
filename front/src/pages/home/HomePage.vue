@@ -8,9 +8,6 @@
 
 export default {
   name: 'Home',
-  mounted() {
-    this.loadData()
-  },
   methods: {
     goToCategories(){
       this.$router.push("/categories")
