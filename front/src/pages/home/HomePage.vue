@@ -17,10 +17,6 @@ export default {
     this.loadData()
   },
   methods: {
-    async loadData() {
-      const response = await fetch('http://localhost:5000/api/info')
-      this.info = await response.json()
-    },
     goToCategories(){
       this.$router.push("/categories")
     }
