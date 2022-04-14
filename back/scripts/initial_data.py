@@ -22,32 +22,38 @@ orders_repository = OrdersRepository(database_path)
 first_dish= Dish(id= "1",
 name = "burguer",
 img = "h7CEF3E4A60287C95",
+price = "10,95",
 category_id = "2"
 )
 second_dish= Dish(id= "2",
 name = "milkshake",
 img = "h7CEF3E4A60287C95",
+price = "10,95",
 category_id = "1"
 )
 
 third_dish= Dish(id= "3",
-name = "burguer + milkshake + ",
+name = "burguer + milkshake ",
 img = "h7CEF3E4A60287C95",
+price = "10,95",
 category_id = "3"
 )
 fourth_dish= Dish(id= "4",
 name = "taco",
 img = "h7CEF3E456541",
+price = "10,95",
 category_id = "2"
 )
 fifth_dish= Dish(id= "5",
 name = "chicken burrito",
 img = "h7CEF3E445645",
+price = "10,95",
 category_id = "2"
 )
 sixth_dish= Dish(id= "6",
 name = "sandwitch",
 img = "h7CEF3E4789789",
+price = "10,95",
 category_id = "2"
 )
 

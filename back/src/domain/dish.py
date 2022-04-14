@@ -3,16 +3,18 @@ from unicodedata import category, name
 
 
 class Dish:
-    def __init__(self, id, name, img, category_id):
+    def __init__(self, id, name, img, price, category_id):
         self.id = id
         self.name = name
         self.img = img
+        self.price = price
         self.category_id = category_id
 
     def to_dict(self):
         return {"id": self.id,
         "name": self.name,
         "img": self.img,
+        "price": self.price,
         "category_id": self.category_id}
 
 
@@ -32,6 +34,7 @@ class DishRepository:
                 id VARCHAR PRIMARY KEY,
                 name VARCHAR,
                 img VARCHAR,
+                price VARCHAR,
                 category_id NUMERIC FOREING KEY 
                 REFERENCES categories (category_id)
             )
@@ -52,6 +55,7 @@ class DishRepository:
         return Dish(id=data["id"],
         name = data["name"],
         img = data["img"],
+        price = data["price"],
         category_id = data["category_id"])
 
     def get_dishes_by_id(self, id):
@@ -70,7 +74,7 @@ class DishRepository:
         return dishes
     
     def dishes_categories(self, category_id):
-        sql = """SELECT dishes.id, dishes.name, dishes.img,dishes.category_id
+        sql = """SELECT dishes.id, dishes.name, dishes.img, dishes.price, dishes.category_id
         FROM dishes 
         INNER JOIN categories ON dishes.category_id = categories.category_id
         WHERE categories.category_id = :category_id
@@ -89,8 +93,8 @@ class DishRepository:
         return result
     
     def save(self, dishes):
-        sql = """insert into dishes (id, name, img, category_id) values (
-            :id, :name, :img, :category_id
+        sql = """insert into dishes (id, name, img, price, category_id) values (
+            :id, :name, :img, :price, :category_id
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
