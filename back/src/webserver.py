@@ -7,6 +7,7 @@ from src.lib.utils import object_to_json
 from src.domain.dish import Dish
 from src.domain.ingredients import Ingredients
 from src.domain.categories import Categories
+from src.domain.orders import Order
 
 
 def create_app(repositories):
