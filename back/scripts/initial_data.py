@@ -108,9 +108,7 @@ categories_repository.save_category(third_category)
 
 first_order = Order(
     order_id = "first_order",
-    item_id = "5"  ,
-    item_name = "taco bell"  ,
-    item_price = "10.95"  
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
 )
 
 orders_repository.save_order(first_order)

@@ -2,17 +2,12 @@ import sqlite3
 
 
 class Order:
-    def __init__(self, order_id, item_name, item_price, item_id):
+    def __init__(self, order_id, order_description):
         self.order_id = order_id
-        self.item_name = item_name
-        self.item_price = item_price
-        self.item_id = item_id
-
+        self.order_description = order_description
     def to_dict(self):
         return {"order_id": self.order_id  ,
-        "item_name": self.item_name  ,
-        "item_price": self.item_price ,
-        "item_id": self.item_id}
+        "order_description": self.order_description}
 
 
 class OrdersRepository:
@@ -29,10 +24,7 @@ class OrdersRepository:
         sql = """
             create table if not exists orders (
                 order_id VARCHAR PRIMARY KEY,
-                item_name VARCHAR,
-                item_price VARCHAR,
-                item_id VARCHAR FOREING KEY 
-                REFERENCES dishes (id)
+                order_description VARCHAR
             )
         """
         conn = self.create_conn()
@@ -42,8 +34,8 @@ class OrdersRepository:
 
 
     def save_order(self, orders):
-        sql = """insert into orders (order_id, item_name, item_price, item_id) values (
-            :order_id, :item_name, :item_price, :item_id
+        sql = """insert into orders (order_id, order_description) values (
+            :order_id, :order_description
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
