@@ -1,4 +1,5 @@
 import sqlite3
+from unittest import result
 
 
 class Order:
@@ -42,4 +43,17 @@ class OrdersRepository:
         cursor.execute(sql, orders.to_dict())
         conn.commit()
 
-        
+    def get_orders(self):
+        sql="""select * from orders"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql)
+
+        data= cursor.fetchall()
+        result = []
+        for item in data:
+            order = Order(**item)
+            result.append(order)
+        return result
+
+    

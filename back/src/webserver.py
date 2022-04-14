@@ -1,3 +1,4 @@
+from re import I
 from unicodedata import category
 from flask import Flask
 from flask_cors import CORS
@@ -54,6 +55,10 @@ def create_app(repositories):
     def categories_get():
         all_categories = repositories["categories"].get_categories()
         return object_to_json(all_categories), 200
-
+    
+    @app.route("/api/orders", methods=["GET"])
+    def orders_get():
+        all_orders = repositories["orders"].get_orders()
+        return object_to_json(all_orders), 200
 
     return app
