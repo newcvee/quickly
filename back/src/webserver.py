@@ -62,4 +62,15 @@ def create_app(repositories):
         all_orders = repositories["orders"].get_orders()
         return object_to_json(all_orders), 200
 
+    @app.route("/api/orders", methods=["POST"])
+    def orders_post():
+        body = request.json
+        order = Order(
+            order_id=body["order_id"],
+            order_description=body["order_description"],
+        )
+        repositories["orders"].save_order(order)
+
+        return ""
+
     return app
