@@ -1,10 +1,11 @@
 <template>
-  <p>hello</p>
+  <button @click="goToAddCategoryPage">Add Category</button>
   <section class="card" v-for="category in categories" :key="category.category_id">
       <article class="category-card" @click="enterCategory(category)">
           {{category.name}}
           {{category.image}}
       </article>
+    <button>Modify</button>
   </section>
 </template>
 
@@ -29,6 +30,10 @@ export default {
         
         enterCategory(category){            
          this.$router.push("/category/dishes/" + category.category_id)
+        },
+        goToAddCategoryPage(){
+            this.$router.push("/add-category");
+
         }
    
 
