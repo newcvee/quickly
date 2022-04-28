@@ -1,25 +1,28 @@
 <template>
   <div class="home">
-    <button @click="goToCategories">START ORDER</button>
+    <button @click="goToCategories">MENU</button>
+    <button @click="goToOrders">ORDER</button>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'Home',
+  name: "Home",
   methods: {
-    goToCategories(){
-      this.$router.push("/categories")
-    }
-  }
-
-
-}
+    goToCategories() {
+      this.$router.push("/categories");
+    },
+  },
+};
 </script>
 
 <style scoped>
 h1 {
   font-style: italic;
+}
+button {
+  width: 50vw;
+  height: 30vh;
+  margin: 5%;
 }
 </style>

@@ -14,22 +14,22 @@ const routes = [
   {
     path: '/categories',
     name: 'Categories',
-    component: () => import('@/pages/orders-create/categories/CategoriesPage.vue')
+    component: () => import('@/pages/categories/CategoriesPage.vue')
   },
   {
     path: '/category/dishes/:category_id',
     name: 'Dishes',
-    component: () => import('@/pages/orders-create/dishes/DishesPage.vue')
+    component: () => import('@/pages/dishes/DishesPage.vue')
   },
   {
     path: '/dishes/:id',
     name: 'OrdersCreate',
-    component: () => import('@/pages/orders-create/dish-detail/DishDetailPage.vue')
+    component: () => import('@/pages/dish-detail/DishDetailPage.vue')
   },
   {
     path: '/Thanks',
     name: 'OrdersThanks',
-    component: () => import('@/pages/orders-create/dish-detail/ThanksPage.vue')
+    component: () => import('@/pages/dish-detail/ThanksPage.vue')
   },
   
 ]
