@@ -41,6 +41,11 @@ const routes = [
     name: 'OrdersThanks',
     component: () => import('@/pages/dish-detail/ThanksPage.vue')
   },
+  {
+    path: '/orders',
+    name: 'OrdersCreate',
+    component: () => import('@/pages/orders/OrdersHistoryPage.vue')
+  },
   
 ]
 
