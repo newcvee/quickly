@@ -37,4 +37,15 @@ export async function getDishById(id) {
   const dish = await response.json();
   return dish;
 }
+
+export async function getOrders() {
+  const settings = {
+      method: "GET",
+      
+    };
+    const response = await fetch(`${config.API_PATH}/orders`, settings);
+    const orders = await response.json();
+    return orders;
+}
+
   
