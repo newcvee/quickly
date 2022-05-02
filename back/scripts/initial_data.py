@@ -110,5 +110,20 @@ first_order = Order(
     order_id = "first_order",
     order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
 )
+second_order = Order(
+    order_id = "second_order",
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+)
+third_order = Order(
+    order_id = "third_order",
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+)
+fourth_order = Order(
+    order_id = "fourth_order",
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+)
 
 orders_repository.save_order(first_order)
+orders_repository.save_order(second_order)
+orders_repository.save_order(third_order)
+orders_repository.save_order(fourth_order)
