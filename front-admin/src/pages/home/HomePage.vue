@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <button @click="goToCategories">MENU</button>
-    <button @click="goToOrders">ORDER</button>
+    <button @click="goToOrders">ORDERS</button>
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default {
   methods: {
     goToCategories() {
       this.$router.push("/categories");
+    },
+    goToOrders() {
+      this.$router.push("/orders");
     },
   },
 };
