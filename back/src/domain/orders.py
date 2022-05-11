@@ -3,12 +3,14 @@ from unittest import result
 
 
 class Order:
-    def __init__(self, order_id, order_description):
+    def __init__(self, order_id, order_description, order_status):
         self.order_id = order_id
         self.order_description = order_description
+        self.order_status = order_status
     def to_dict(self):
         return {"order_id": self.order_id  ,
-        "order_description": self.order_description}
+        "order_description": self.order_description,
+        "order_status": self.order_status}
 
 
 class OrdersRepository:
@@ -25,7 +27,8 @@ class OrdersRepository:
         sql = """
             create table if not exists orders (
                 order_id VARCHAR PRIMARY KEY,
-                order_description VARCHAR
+                order_description VARCHAR,
+                order_status VARCHAR
             )
         """
         conn = self.create_conn()
@@ -35,8 +38,8 @@ class OrdersRepository:
 
 
     def save_order(self, orders):
-        sql = """insert into orders (order_id, order_description) values (
-            :order_id, :order_description
+        sql = """insert into orders (order_id, order_description, order_status) values (
+            :order_id, :order_description, :order_status
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()

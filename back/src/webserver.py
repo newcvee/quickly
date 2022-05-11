@@ -2,6 +2,7 @@ from re import I
 from unicodedata import category
 from flask import Flask
 from flask_cors import CORS
+from flask import Flask, request, jsonify
 
 from src.lib.utils import object_to_json
 from src.domain.dish import Dish
@@ -56,6 +57,18 @@ def create_app(repositories):
     def categories_get():
         all_categories = repositories["categories"].get_categories()
         return object_to_json(all_categories), 200
+
+    @app.route("/api/categories", methods=["POST"])
+    def categories_post():
+        body = request.json
+        order = Order(
+            category_id=body["category_id"],
+            name=body["name"],
+            image= body["image"]
+        )
+        repositories["categories"].save_category(category)
+
+        return ""
     
     @app.route("/api/orders", methods=["GET"])
     def orders_get():
@@ -72,5 +85,7 @@ def create_app(repositories):
         repositories["orders"].save_order(order)
 
         return ""
+    
+    
 
     return app

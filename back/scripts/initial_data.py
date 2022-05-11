@@ -108,19 +108,23 @@ categories_repository.save_category(third_category)
 
 first_order = Order(
     order_id = "first_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
+    order_status = "doing"
 )
 second_order = Order(
     order_id = "second_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
+    order_status = "doing"
 )
 third_order = Order(
     order_id = "third_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
+    order_status = "done"
 )
 fourth_order = Order(
     order_id = "fourth_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}"
+    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
+    order_status = "incoming"
 )
 
 orders_repository.save_order(first_order)
