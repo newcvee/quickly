@@ -1,8 +1,8 @@
 <template>
 <main>
     <article v-for="order in orders" :key="order.order_id">
-    <p>{{order.order_status}}</p>
     <p>{{order.order_id}}</p>
+    <p>{{order.order_description}}</p>
     </article>
 </main>
   
@@ -35,7 +35,7 @@ export default {
 article {
     border: 1px solid black;
     margin: 0.5em 0.5em 0.5em;
-
+    
 }
 
 </style>
