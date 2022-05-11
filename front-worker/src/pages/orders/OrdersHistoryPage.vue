@@ -1,16 +1,9 @@
 <template>
 <main>
-    <table >
-      <tr>
-          <th>Id</th>
-          <th>Description</th>
-      </tr>
-      <tr v-for="order in orders" :key="order.order_id">
-        <td>{{order.order_id}}</td>
-        <td>{{order.order_description}}</td>
-      </tr>
-
-    </table>
+    <article v-for="order in orders" :key="order.order_id">
+    <p>{{order.order_status}}</p>
+    <p>{{order.order_id}}</p>
+    </article>
 </main>
   
 </template>
@@ -39,11 +32,10 @@ export default {
 </script>
 
 <style>
-
-table, th, td {
-  border: 1px solid;
-  border-collapse: collapse;
-  width: 100vw;
+article {
+    border: 1px solid black;
+    margin: 0.5em 0.5em 0.5em;
+    
 }
 
 </style>
