@@ -32,6 +32,11 @@ const routes = [
     component: () => import('@/pages/dishes/DishesPage.vue')
   },
   {
+    path: '/add-dish',
+    name: 'Add Dishes',
+    component: () => import('@/pages/dishes/AddDishesPage.vue')
+  },
+  {
     path: '/dishes/:id',
     name: 'OrdersCreate',
     component: () => import('@/pages/dish-detail/DishDetailPage.vue')

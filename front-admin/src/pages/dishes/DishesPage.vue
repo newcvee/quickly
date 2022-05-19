@@ -1,5 +1,6 @@
 <template>
 <p>hellouuu</p>
+<button @click="goToAddDishPage">Add Dish</button>
 <section class="card" v-for="dish in dishes" :key="dish.category_id" @click="enterDishDetail(dish)" >
 <p>{{dish.img}}</p>
 <p>{{dish.name}}</p>
@@ -26,7 +27,9 @@ export default {
         enterDishDetail(dish){            
          this.$router.push("/dishes/" + dish.id)
         },
-        
+        goToAddDishPage(){
+            this.$router.push("/add-dish");
+        },
     }
 
 }

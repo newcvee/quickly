@@ -2,6 +2,7 @@
   <div>
     <h1>{{dish.name}}</h1>
     <!-- <img alt="foto" :src="dish.img" /> -->
+  
     <p>{{dish.img}}</p>
   </div>
 

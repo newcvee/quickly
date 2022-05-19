@@ -7,6 +7,7 @@
       </article>
     <button @click="goToModifyCategoryPage">Modify</button>
   </section>
+  {{$data}}
 </template>
 
 <script>
