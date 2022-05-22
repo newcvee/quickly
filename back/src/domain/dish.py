@@ -35,7 +35,7 @@ class DishRepository:
                 name VARCHAR,
                 img VARCHAR,
                 price VARCHAR,
-                category_id NUMERIC FOREING KEY 
+                category_id VARCHAR FOREING KEY 
                 REFERENCES categories (category_id)
             )
         """
