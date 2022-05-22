@@ -50,6 +50,21 @@ class CategoriesRepository:
             result.append(category)
         
         return result
+
+    def get_categories_by_id(self, category_id):
+        sql = """SELECT * FROM categories WHERE category_id=:category_id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"category_id": category_id})
+
+        data = cursor.fetchone()
+
+        if data is not None:
+            categories = Categories(**data)
+        else:
+            categories = None
+            
+        return categories
     
     def get_the_categories(self):
         sql = """SELECT categories.category_id,categories.name, categories.image, dishes.category_id
@@ -76,7 +91,7 @@ class CategoriesRepository:
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, categories.to_dict())
+        cursor.execute(sql,{"category_id":categories.category_id,"name":categories.name,"image":categories.image} )
         conn.commit()
 
   
