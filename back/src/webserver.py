@@ -23,6 +23,17 @@ def create_app(repositories):
     def dish_get():
         dishes = repositories["dishes"].get_dishes()
         return object_to_json(dishes)
+
+    @app.route("/api/dishes", methods=["POST"])
+    def dishes_post():
+        data = request.json
+        dish = Dish(id=data["id"],
+            name = data["name"],
+            img = data["img"],
+            price = data["price"],
+            category_id = data["category_id"])
+        repositories["dishes"].save(dish)
+        return ""
     
     @app.route("/api/dishes/<id>", methods=["GET"])
     def dish_get_by_id(id):
@@ -60,16 +71,22 @@ def create_app(repositories):
 
     @app.route("/api/categories", methods=["POST"])
     def categories_post():
-        body = request.json
-        order = Order(
-            category_id=body["category_id"],
-            name=body["name"],
-            image= body["image"]
-        )
+        data = request.json
+        category = Categories(
+            category_id=data["category_id"],
+            name=data["name"],
+            image=data["image"])
         repositories["categories"].save_category(category)
-
         return ""
-    
+
+    @app.route("/api/category/<category_id>", methods=["GET"])
+    def category_get_by_id(category_id):
+        categories = repositories["categories"].get_categories_by_id(category_id)
+        if category_id == categories.category_id or categories != None:
+            return object_to_json(categories), 200
+        else:
+            return "", 403
+
     @app.route("/api/orders", methods=["GET"])
     def orders_get():
         all_orders = repositories["orders"].get_orders()
