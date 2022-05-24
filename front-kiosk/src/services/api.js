@@ -11,30 +11,30 @@ export async function getCategories() {
   return categories;
 }
 
-export async function getDish() {
+export async function getItem() {
   const settings = {
       method: "GET",
       
     };
-    const response = await fetch(`${config.API_PATH}/dishes`, settings);
-    const dish = await response.json();
-    return dish;
+    const response = await fetch(`${config.API_PATH}/items`, settings);
+    const item = await response.json();
+    return item;
 }
 
-export async function getDishesByCategory(category_id) {
+export async function getItemsByCategory(category_id) {
   const settings = {
     method: "GET",
   };
-  const response = await fetch(`${config.API_PATH}/category/dishes/${category_id}`, settings);
-  const dishes = await response.json();
-  return dishes;
+  const response = await fetch(`${config.API_PATH}/category/items/${category_id}`, settings);
+  const items = await response.json();
+  return items;
 }
-export async function getDishById(id) {
+export async function getItemById(id) {
   const settings = {
     method: "GET",
   };
-  const response = await fetch(`${config.API_PATH}/dishes/${id}`, settings);
-  const dish = await response.json();
-  return dish;
+  const response = await fetch(`${config.API_PATH}/items/${id}`, settings);
+  const item = await response.json();
+  return item;
 }
   

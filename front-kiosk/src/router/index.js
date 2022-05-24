@@ -17,19 +17,19 @@ const routes = [
     component: () => import('@/pages/orders-create/categories/CategoriesPage.vue')
   },
   {
-    path: '/category/dishes/:category_id',
-    name: 'Dishes',
-    component: () => import('@/pages/orders-create/dishes/DishesPage.vue')
+    path: '/category/items/:category_id',
+    name: 'Items',
+    component: () => import('@/pages/orders-create/items/ItemsPage.vue')
   },
   {
-    path: '/dishes/:id',
+    path: '/items/:id',
     name: 'OrdersCreate',
-    component: () => import('@/pages/orders-create/dish-detail/DishDetailPage.vue')
+    component: () => import('@/pages/orders-create/item-detail/ItemDetailPage.vue')
   },
   {
     path: '/Thanks',
     name: 'OrdersThanks',
-    component: () => import('@/pages/orders-create/dish-detail/ThanksPage.vue')
+    component: () => import('@/pages/orders-create/item-detail/ThanksPage.vue')
   },
   
 ]
