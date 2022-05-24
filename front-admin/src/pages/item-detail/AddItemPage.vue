@@ -4,7 +4,7 @@
     <form>
       <label for="category-name">Give the new category a name:</label>
       <input type="text" v-model="category.category_id">
-      <label for="category-name">Give your category a name:</label>
+      <label for="category-name">Give it a name:</label>
       <input type="text" v-model="category.name">
       <label for="category-image">Now, an image:</label>
       <input type="text" v-model="category.image">

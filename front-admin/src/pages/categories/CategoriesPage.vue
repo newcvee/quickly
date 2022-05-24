@@ -30,7 +30,7 @@ export default {
         },
         
         enterCategory(category){            
-         this.$router.push("/category/dishes/" + category.category_id)
+         this.$router.push("/category/items/" + category.category_id)
         },
         goToAddCategoryPage(){
             this.$router.push("/add-category");

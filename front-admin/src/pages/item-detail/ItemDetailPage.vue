@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>{{dish.name}}</h1>
+    <h1>{{item.name}}</h1>
     <!-- <img alt="foto" :src="dish.img" /> -->
   
-    <p>{{dish.img}}</p>
+    <p>{{item.img}}</p>
   </div>
 
   <button>Añande al carrito</button>
@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import { getDishById } from "@/services/api.js";
+import { getItemById } from "@/services/api.js";
 
 export default {
   name: "Counter",
   data() {
     return {
-      dish: {},
+      item: {},
     };
   },
   mounted() {
@@ -25,8 +25,8 @@ export default {
   },
   methods: {
     async loadData() {
-      let DishId = this.$route.params.id;
-      this.dish = await getDishById(DishId);
+      let ItemId = this.$route.params.id;
+      this.item = await getItemById(ItemId);
     }
   },
 };

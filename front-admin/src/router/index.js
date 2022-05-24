@@ -27,24 +27,24 @@ const routes = [
     component: () => import('@/pages/categories/ModifyCategoryPage.vue')
   },
   {
-    path: '/category/dishes/:category_id',
-    name: 'Dishes',
-    component: () => import('@/pages/dishes/DishesPage.vue')
+    path: '/category/items/:category_id',
+    name: 'Items',
+    component: () => import('@/pages/items/ItemsPage.vue')
   },
   {
-    path: '/add-dish',
-    name: 'Add Dishes',
-    component: () => import('@/pages/dishes/AddDishesPage.vue')
+    path: '/add-item',
+    name: 'Add Items',
+    component: () => import('@/pages/items/AddItemsPage.vue')
   },
   {
-    path: '/dishes/:id',
+    path: '/items/:id',
     name: 'OrdersCreate',
-    component: () => import('@/pages/dish-detail/DishDetailPage.vue')
+    component: () => import('@/pages/item-detail/ItemDetailPage.vue')
   },
   {
     path: '/Thanks',
     name: 'OrdersThanks',
-    component: () => import('@/pages/dish-detail/ThanksPage.vue')
+    component: () => import('@/pages/item-detail/ThanksPage.vue')
   },
   {
     path: '/orders',
