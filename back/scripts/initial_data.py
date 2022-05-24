@@ -5,64 +5,64 @@ sys.path.insert(0, "")
 
 database_path = "data/database.db"
 
-from src.domain.dish import Dish, DishRepository
+from src.domain.item import Item, ItemsRepository
 from src.domain.ingredients import Ingredients, IngredientsRepository
 from src.domain.categories import Categories, CategoriesRepository
 from src.domain.orders import Order, OrdersRepository
 
 
 
-dish_repository = DishRepository(database_path)
+items_repository = ItemsRepository(database_path)
 ingredients_repository = IngredientsRepository(database_path)
 categories_repository = CategoriesRepository(database_path)
 orders_repository = OrdersRepository(database_path)
 
 
 
-first_dish= Dish(id= "1",
+first_item= Item(id= "1",
 name = "burguer",
 img = "h7CEF3E4A60287C95",
 price = "10,95",
 category_id = "2"
 )
-second_dish= Dish(id= "2",
+second_item= Item(id= "2",
 name = "milkshake",
 img = "h7CEF3E4A60287C95",
 price = "10,95",
 category_id = "1"
 )
 
-third_dish= Dish(id= "3",
+third_item= Item(id= "3",
 name = "burguer + milkshake ",
 img = "h7CEF3E4A60287C95",
 price = "10,95",
 category_id = "3"
 )
-fourth_dish= Dish(id= "4",
+fourth_item= Item(id= "4",
 name = "taco",
 img = "h7CEF3E456541",
 price = "10,95",
 category_id = "2"
 )
-fifth_dish= Dish(id= "5",
+fifth_item= Item(id= "5",
 name = "chicken burrito",
 img = "h7CEF3E445645",
 price = "10,95",
 category_id = "2"
 )
-sixth_dish= Dish(id= "6",
+sixth_item= Item(id= "6",
 name = "sandwitch",
 img = "h7CEF3E4789789",
 price = "10,95",
 category_id = "2"
 )
 
-dish_repository.save(first_dish)
-dish_repository.save(second_dish)
-dish_repository.save(third_dish)
-dish_repository.save(fourth_dish)
-dish_repository.save(fifth_dish)
-dish_repository.save(sixth_dish)
+items_repository.save(first_item)
+items_repository.save(second_item)
+items_repository.save(third_item)
+items_repository.save(fourth_item)
+items_repository.save(fifth_item)
+items_repository.save(sixth_item)
 
 first_dish_ingr_one= Ingredients( ingr_id= "1",
 dish_id="1",
