@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask import Flask, request, jsonify
 
 from src.lib.utils import object_to_json
-from src.domain.dish import Dish
+from src.domain.item import Item
 from src.domain.ingredients import Ingredients
 from src.domain.categories import Categories
 from src.domain.orders import Order
@@ -19,34 +19,34 @@ def create_app(repositories):
     def hello_world():
         return "...magic!"
     
-    @app.route("/api/dishes", methods=["GET"])
-    def dish_get():
-        dishes = repositories["dishes"].get_dishes()
-        return object_to_json(dishes)
+    @app.route("/api/items", methods=["GET"])
+    def items_get():
+        items = repositories["items"].get_items()
+        return object_to_json(items)
 
-    @app.route("/api/dishes", methods=["POST"])
-    def dishes_post():
+    @app.route("/api/items", methods=["POST"])
+    def items_post():
         data = request.json
-        dish = Dish(id=data["id"],
+        item = Item(id=data["id"],
             name = data["name"],
             img = data["img"],
             price = data["price"],
             category_id = data["category_id"])
-        repositories["dishes"].save(dish)
+        repositories["items"].save(item)
         return ""
     
-    @app.route("/api/dishes/<id>", methods=["GET"])
-    def dish_get_by_id(id):
-        dishes = repositories["dishes"].get_dishes_by_id(id)
-        if id == dishes.id:
-            return object_to_json(dishes), 200
+    @app.route("/api/items/<id>", methods=["GET"])
+    def item_get_by_id(id):
+        items = repositories["items"].get_items_by_id(id)
+        if id == items.id:
+            return object_to_json(items), 200
         else:
             return "", 403
     
-    @app.route("/api/category/dishes/<category_id>", methods=["GET"])
-    def dishes_by_category(category_id):
-        all_dishes_by_category = repositories["dishes"].dishes_categories(category_id)
-        return object_to_json(all_dishes_by_category), 200
+    @app.route("/api/category/items/<category_id>", methods=["GET"])
+    def items_by_category(category_id):
+        all_items_by_category = repositories["items"].items_categories(category_id)
+        return object_to_json(all_items_by_category), 200
     
     @app.route("/api/allcategories", methods=["GET"])
     def all_categories():
