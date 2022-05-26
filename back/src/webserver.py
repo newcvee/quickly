@@ -6,7 +6,6 @@ from flask import Flask, request, jsonify
 
 from src.lib.utils import object_to_json
 from src.domain.item import Item
-from src.domain.ingredients import Ingredients
 from src.domain.categories import Categories
 from src.domain.orders import Order
 
@@ -19,10 +18,21 @@ def create_app(repositories):
     def hello_world():
         return "...magic!"
     
+    @app.route("/api/item", methods=["GET"])
+    def item_get():
+        items = repositories["items"].get_item()
+        return object_to_json(items)
+        
     @app.route("/api/items", methods=["GET"])
     def items_get():
         items = repositories["items"].get_items()
         return object_to_json(items)
+    
+
+    # @app.route("/api/allcategories", methods=["GET"])
+    # def all_categories():
+    #     all_categories = repositories["categories"].get_the_categories()
+    #     return object_to_json(all_categories), 200
 
     @app.route("/api/items", methods=["POST"])
     def items_post():

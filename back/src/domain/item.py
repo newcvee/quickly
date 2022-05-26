@@ -44,7 +44,7 @@ class ItemsRepository:
         cursor.execute(sql)
         conn.commit()
 
-    def get_items(self):
+    def get_item(self):
         sql = """select * from items"""
         conn = self.create_conn()
         cursor = conn.cursor()
@@ -57,6 +57,19 @@ class ItemsRepository:
         img = data["img"],
         price = data["price"],
         category_id = data["category_id"])
+    
+    def get_items(self):
+        sql = """select * from items"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        result = []
+        for item in data:
+            item = Item(**item)
+            result.append(item)
+        return result
+
 
     def get_items_by_id(self, id):
         sql = """SELECT * FROM items WHERE id=:id"""
