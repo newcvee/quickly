@@ -6,14 +6,12 @@ sys.path.insert(0, "")
 database_path = "data/database.db"
 
 from src.domain.item import Item, ItemsRepository
-from src.domain.ingredients import Ingredients, IngredientsRepository
 from src.domain.categories import Categories, CategoriesRepository
 from src.domain.orders import Order, OrdersRepository
 
 
 
 items_repository = ItemsRepository(database_path)
-ingredients_repository = IngredientsRepository(database_path)
 categories_repository = CategoriesRepository(database_path)
 orders_repository = OrdersRepository(database_path)
 
@@ -64,26 +62,6 @@ items_repository.save(fourth_item)
 items_repository.save(fifth_item)
 items_repository.save(sixth_item)
 
-first_dish_ingr_one= Ingredients( ingr_id= "1",
-dish_id="1",
-name= "tomato",
-state="with")
-
-first_dish_ingr_two= Ingredients( ingr_id= "2",
-dish_id="1",
-name= "letucce",
-state="with")
-
-first_dish_ingr_three= Ingredients( ingr_id= "3",
-dish_id="1",
-name= "cheese",
-state="with")
-
-
-
-ingredients_repository.save_ingr(first_dish_ingr_one)
-ingredients_repository.save_ingr(first_dish_ingr_two)
-ingredients_repository.save_ingr(first_dish_ingr_three)
 
 first_category = Categories(
     category_id = "1",
