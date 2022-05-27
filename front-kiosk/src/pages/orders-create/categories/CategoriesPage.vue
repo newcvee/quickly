@@ -1,25 +1,31 @@
 <template>
-  <p>hello there</p>
-  <section class="card" v-for="category in categories" :key="category.category_id">
-      <article class="category-card" @click="enterCategory(category)">
-          {{category.name}}
-          {{category.image}}
-      </article>
-  </section>
+    <p>hello there</p>
+    <section class="card" v-for="category in categories" :key="category.category_id">
+        <h1>{{category.name}}</h1>
+        <div class="card" v-for="item in filteredItems" :key="item.id" >
+            <p>{{item.img}}</p>
+            <p>{{item.name}}</p>
+            <p>hey</p>
+            <button>Add to cart</button>
+        </div>
+    </section>
 </template>
 
 <script>
-import { getCategories } from "@/services/api.js";
+import { getCategories, getItems } from "@/services/api.js";
 export default {
     name: "Categories",
     data(){
         return { 
             categories: {},
-            
+            items: [],
+            filteredItems: [],
             };
     },
     mounted() {
         this.loadCategories();
+        this.loadItems();
+
         
     },
     methods: {
@@ -27,8 +33,17 @@ export default {
             this.categories = await getCategories();
         },
         
-        enterCategory(category){            
-         this.$router.push("/category/items/" + category.category_id)
+        async loadItems() {
+            this.items = await getItems();
+            // console.log(this.items)
+        },
+        
+        // enterCategory(category){            
+        //  this.$router.push("/category/items/" + category.category_id)
+        // }
+        filterItems(){
+            this.filteredItems= this.items.filter(this.item.category_id === this.category.category_id);
+            console.log(this.filteredItems)
         }
    
 
@@ -36,16 +51,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card {
-    display: inline-block;
     margin: 1%;
-    
     }
 
 .category-card {
-    width: 30vw;
-    height: 30vh;
     border: 1px solid black;
     margin-left: auto;
     margin-right: auto;

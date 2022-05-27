@@ -11,7 +11,7 @@ export async function getCategories() {
   return categories;
 }
 
-export async function getItem() {
+export async function getItems() {
   const settings = {
       method: "GET",
       
