@@ -1,13 +1,6 @@
 <template>
-    <p>hello there</p>
-    <section class="card" v-for="category in categories" :key="category.category_id">
+    <section class="category-card" v-for="category in categories" :key="category.category_id" @click="enterCategory(category)">
         <h1>{{category.name}}</h1>
-        <div class="card" v-for="item in filteredItems" :key="item.id" >
-            <p>{{item.img}}</p>
-            <p>{{item.name}}</p>
-            <p>hey</p>
-            <button>Add to cart</button>
-        </div>
     </section>
 </template>
 
@@ -18,8 +11,6 @@ export default {
     data(){
         return { 
             categories: {},
-            items: [],
-            filteredItems: [],
             };
     },
     mounted() {
@@ -38,15 +29,9 @@ export default {
             // console.log(this.items)
         },
         
-        // enterCategory(category){            
-        //  this.$router.push("/category/items/" + category.category_id)
-        // }
-        filterItems(){
-            this.filteredItems= this.items.filter(this.item.category_id === this.category.category_id);
-            console.log(this.filteredItems)
-        }
-   
-
+        enterCategory(category){            
+         this.$router.push("/category/items/" + category.category_id)
+        },
     }
 }
 </script>

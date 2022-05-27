@@ -31,6 +31,11 @@ const routes = [
     name: 'OrdersThanks',
     component: () => import('@/pages/orders-create/item-detail/ThanksPage.vue')
   },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('@/pages/orders-create/cart/CartPage.vue')
+  },
   
 ]
 
