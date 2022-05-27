@@ -1,6 +1,6 @@
 <template>
 <p>hellouuu</p>
-<section class="card" v-for="item in items" :key="item.category_id" >
+<section class="card" v-for="(item, index) in items" :key="index" >
 <p>{{item.img}}</p>
 <p>{{item.name}}</p>
 <button @click="AddToCart(item)">Add to cart</button>
