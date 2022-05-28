@@ -9,15 +9,26 @@
 
     </div>
   </div>
+  <div class="paying-button" @click="makeAnOrder">PAY</div>
+  {{$data}}
 </template>
 
 <script>
 import { sendItemsToCart } from "@/services/cart.js";
+import { v4 as uuidv4 } from "uuid";
+
 export default {
   name: "Cart",
   data() {
     return {
       itemsCart: [],
+      order: {
+        order_id: "",
+        order_date: "",
+        order_price: "",
+        order_state: "waiting",
+        order_description: "",
+      },
     };
   },
   mounted() {
@@ -29,14 +40,30 @@ export default {
       console.log(this.itemsCart);
     },
     removeItemFromCart(item){
-      this.itemsCart.splice(this.itemsCart.indexOf(item), 1)},
+      this.itemsCart.splice(this.itemsCart.indexOf(item), 1)
+    },
+  
+    makeAnOrder(){
+      this.order.order_id = uuidv4();
+      let today = new Date().toLocaleDateString()
+      this.order.order_date = today;
+      this.order.order_description = this.itemsCart
+
+    },
   },
 };
 </script>
 
 <style>
 .item{
-    border: 2px solid red;
+  border: 2px solid blue;
+}
+
+.paying-button{
+  border: 2px solid red;
+  position:fixed;
+  bottom:5%;
+  left:49%;
 }
 
 </style>
