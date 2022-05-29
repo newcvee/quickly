@@ -32,26 +32,20 @@ export default {
 }
 button{
   margin: 50px;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: 200;
+  font-family: "Roboto Mono", monospace;
+  font-size: 3rem;
+  font-weight: 900;
   color: rgb(22, 32, 67);
   letter-spacing: 1px;
   padding: 13px 50px 13px;
   outline: 0;
-  border: 1px solid rgb(22, 32, 67);
+  border: thick double rgb(22, 32, 67);
+  border-radius: 10px;
   cursor: pointer;
   position: relative;
-  background-color: white;
+  background-color: rgb(109,154,149);
+  width: 30vw;
+  height: 20vh;
 }
-button::after{
-  content: "";
-  background-color: rgb(22, 32, 67);
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  height: 100%;
-  top: 7px;
-  left: 7px;
-}
+
 </style>
