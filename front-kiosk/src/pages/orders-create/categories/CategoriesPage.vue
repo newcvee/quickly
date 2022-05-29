@@ -1,6 +1,9 @@
 <template>
-    <section class="category-card" v-for="category in categories" :key="category.category_id" @click="enterCategory(category)">
-        <h1>{{category.name}}</h1>
+    <section class="categories">
+        <div class="category-card" v-for="category in categories" :key="category.category_id" @click="enterCategory(category)">
+            <h1>{{category.name}}</h1>
+            <p>{{category.image}}</p>
+        </div>
     </section>
 </template>
 
@@ -37,14 +40,20 @@ export default {
 </script>
 
 <style scoped>
-.card {
+* {
     margin: 1%;
-    }
+}
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
 
+}
 .category-card {
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
+    border: 1px solid black ;
+    width: 30vw;
+    height: 30vh;
+ 
 }
 
 </style>
