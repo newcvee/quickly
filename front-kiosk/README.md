@@ -3,6 +3,7 @@
 ## Configuración del proyecto
 ```
 npm install
+npm install uuid
 ```
 
 ### Ejecutar servidor de desarrollo
@@ -14,6 +15,8 @@ npm run serve
 ```
 npm run build
 ```
+
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
