@@ -60,7 +60,7 @@ export default {
     width: 30vw;
     height: 50vh;
     background-color: rgb(41, 79, 112) ;
-    background-image: url("https://i.pinimg.com/originals/e7/4d/91/e74d9101de162169ac777e5d8bc05c2d.jpg");
+    background-image: url("https://img.pikbest.com/backgrounds/v3/20190612/blue-nostalgic-japanese-wave-background_1403008.jpg!bw700");
     background-repeat: no-repeat;
     background-size: auto;
     border: thick double rgb(22, 32, 67);
@@ -77,7 +77,7 @@ export default {
     border: thick double rgb(22, 32, 67);
     border-radius: 2%;
     background-color: rgb(218, 213, 181) ;
-    color: rgb(22, 32, 67);
+    color: rgb(41, 79, 112);
     width: 20vw;
     height: 20vh;
     display: flex;
