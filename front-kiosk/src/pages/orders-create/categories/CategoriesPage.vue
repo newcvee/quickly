@@ -1,8 +1,7 @@
 <template>
     <section class="categories">
         <div class="category-card" v-for="category in categories" :key="category.category_id" @click="enterCategory(category)">
-            <h1>{{category.name}}</h1>
-            <p>{{category.image}}</p>
+            <p>{{category.name}}</p>
         </div>
     </section>
 </template>
@@ -40,20 +39,50 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
+
 * {
     margin: 1%;
+    box-sizing: border-box;
+    background-color: rgb(22, 32, 67);
 }
 .categories {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
+    justify-content: space-between;
 
 }
 .category-card {
-    border: 1px solid black ;
+    font-family: "Roboto Mono", monospace;
+    font-size: 3rem;
+    font-weight: 900;
     width: 30vw;
-    height: 30vh;
- 
+    height: 50vh;
+    background-color: rgb(41, 79, 112) ;
+    background-image: url("https://i.pinimg.com/originals/e7/4d/91/e74d9101de162169ac777e5d8bc05c2d.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    border: thick double rgb(22, 32, 67);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.category-card > p{
+    /* border: 5px solid rgb(22, 32, 67); */
+    border: thick double rgb(22, 32, 67);
+    border-radius: 2%;
+    background-color: rgb(218, 213, 181) ;
+    color: rgb(22, 32, 67);
+    width: 20vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>
