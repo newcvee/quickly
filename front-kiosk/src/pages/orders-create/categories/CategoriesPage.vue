@@ -64,6 +64,7 @@ export default {
     background-repeat: no-repeat;
     background-size: auto;
     border: thick double rgb(22, 32, 67);
+    border-radius: 10px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -75,7 +76,7 @@ export default {
 .category-card > p{
     /* border: 5px solid rgb(22, 32, 67); */
     border: thick double rgb(22, 32, 67);
-    border-radius: 2%;
+    border-radius: 10px;
     background-color: rgb(218, 213, 181) ;
     color: rgb(41, 79, 112);
     width: 20vw;
