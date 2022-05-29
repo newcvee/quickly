@@ -34,7 +34,7 @@ class ItemsRepository:
                 id VARCHAR PRIMARY KEY,
                 name VARCHAR,
                 img VARCHAR,
-                price VARCHAR,
+                price NUMERIC,
                 category_id VARCHAR FOREING KEY 
                 REFERENCES categories (category_id)
             )

@@ -6,10 +6,13 @@
       <p>{{ item.name }}</p>
       <p>{{ item.price }}</p>
       <button @click="removeItemFromCart(item)">Remove from cart</button>
-
     </div>
-  </div>
+    <div class="price">
+      <p>PRICE</p>
+      <p>{{calculateTotalCartPrice()}}</p>
+    </div>
   <div class="paying-button" @click="makeAnOrder">PAY</div>
+  </div>
   {{$data}}
 </template>
 
@@ -25,7 +28,7 @@ export default {
       order: {
         order_id: "",
         order_date: "",
-        order_price: "",
+        order_price: 0,
         order_state: "waiting",
         order_description: "",
       },
@@ -33,22 +36,35 @@ export default {
   },
   mounted() {
     this.CartItems();
+    // this.calculateTotalCartPrice();
   },
+
   methods: {
+    calculateTotalCartPrice(){
+      let cartPrice = 0;
+      for (let item of this.itemsCart){
+        cartPrice = cartPrice + item["price"];
+      }
+      console.log(cartPrice)
+      return cartPrice.toFixed(2);
+    },
     CartItems() {
       this.itemsCart = sendItemsToCart();
-      console.log(this.itemsCart);
     },
     removeItemFromCart(item){
       this.itemsCart.splice(this.itemsCart.indexOf(item), 1)
     },
-  
+
+      // parseFloat(item["price"])
+      // return total.toFixed(2)
+
+    
     makeAnOrder(){
       this.order.order_id = uuidv4();
       let today = new Date().toLocaleDateString()
       this.order.order_date = today;
       this.order.order_description = this.itemsCart
-
+      this.order.order_price = this.calculateTotalCartPrice()
     },
   },
 };
