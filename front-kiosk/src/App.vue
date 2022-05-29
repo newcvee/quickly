@@ -1,15 +1,44 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>|
-    <router-link to="/categories">Categorias</router-link>|
-    <router-link to="/cart">Carrito</router-link>
+    <p @click="goToHome">Home</p>
+    <p @click="goToCategories">Categorías</p>
+    <p @click="goToCart">Cart</p>
   </div>
   <router-view />
 </template>
+<script>
+
+export default{
+  methods: {
+    goToHome(){
+      this.$router.push("/")
+    },
+    goToCategories(){
+      this.$router.push("/categories")
+    },
+    goToCart(){
+      this.$router.push("/cart")
+
+    }
+    
+    
+  }
+}
+</script>
+
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap');
 #nav{
-  background-color: red;
-  height: 1vh;
+  background-color: rgb(22, 32, 67);
+  color: rgb(218, 213, 181);
+  margin: 0;
+  height: 2vh;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+  font-weight: 800;
+  
 }
 </style>
