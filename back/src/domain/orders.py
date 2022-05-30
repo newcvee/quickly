@@ -1,16 +1,20 @@
 import sqlite3
-from unittest import result
 
 
 class Order:
-    def __init__(self, order_id, order_description, order_status):
+    def __init__(self, order_id, order_date, order_price, order_state, order_description):
         self.order_id = order_id
+        self.order_date = order_date
+        self.order_price = order_price
+        self.order_state = order_state
         self.order_description = order_description
-        self.order_status = order_status
+
     def to_dict(self):
-        return {"order_id": self.order_id  ,
-        "order_description": self.order_description,
-        "order_status": self.order_status}
+        return {"order_id": self.order_id,
+        "order_date": self.order_date,
+        "order_price": self.order_price,
+        "order_state": self.order_state,
+        "order_description": self.order_description}
 
 
 class OrdersRepository:
@@ -27,8 +31,10 @@ class OrdersRepository:
         sql = """
             create table if not exists orders (
                 order_id VARCHAR PRIMARY KEY,
-                order_description VARCHAR,
-                order_status VARCHAR
+                order_date VARCHAR,
+                order_price NUMERIC,
+                order_state VARCHAR,
+                order_description VARCHAR
             )
         """
         conn = self.create_conn()
@@ -38,8 +44,8 @@ class OrdersRepository:
 
 
     def save_order(self, orders):
-        sql = """insert into orders (order_id, order_description, order_status) values (
-            :order_id, :order_description, :order_status
+        sql = """insert into orders (order_id, order_date, order_price, order_state, order_description) values (
+            :order_id, :order_date, :order_price, :order_state, :order_description
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()
