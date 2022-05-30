@@ -466,25 +466,29 @@ categories_repository.save_category(bebidas_category)
 
 
 
-first_order = Order(
-    order_id = "first_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
-    order_status = "doing"
+first_order = Order(order_id = "1_id",
+    order_date= "21/22/2222",
+    order_price = "999.99",
+    order_state = "waiting",
+    order_description = "Hey"
 )
-second_order = Order(
-    order_id = "second_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
-    order_status = "doing"
+second_order = Order(order_id = "2_id",
+    order_date= "21/22/2222",
+    order_price = "999.99",
+    order_state = "waiting",
+    order_description = "Hey"
 )
-third_order = Order(
-    order_id = "third_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
-    order_status = "done"
+third_order = Order(order_id = "3_id",
+    order_date= "21/22/2222",
+    order_price = "999.99",
+    order_state = "waiting",
+    order_description = "Hey"
 )
-fourth_order = Order(
-    order_id = "fourth_order",
-    order_description = "{'dish': 'taco','price': '10.95','date': '14-01-2022'}",
-    order_status = "incoming"
+fourth_order = Order(order_id = "4_id",
+    order_date= "21/22/2222",
+    order_price = "999.99",
+    order_state = "waiting",
+    order_description = "Hey"
 )
 
 orders_repository.save_order(first_order)

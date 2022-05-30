@@ -107,6 +107,9 @@ def create_app(repositories):
         body = request.json
         order = Order(
             order_id=body["order_id"],
+            order_date=body["order_date"],
+            order_price=body["order_price"],
+            order_state=body["order_state"],
             order_description=body["order_description"],
         )
         repositories["orders"].save_order(order)
