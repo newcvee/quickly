@@ -6,13 +6,13 @@
       <input type="text" v-model="item.category_id"> 
 
       <label for="category-name">Item id:</label>
-      <input type="text" v-model="dish.id">
+      <input type="text" v-model="item.id">
 
       <label for="category-name">Name:</label>
       <input type="text" v-model="item.name">
 
       <label for="category-image">Image:</label>
-      <input type="text" v-model="item.image">
+      <input type="text" v-model="item.img">
 
       <label for="category-image">Price:</label>
       <input type="text" v-model="item.price">
@@ -34,7 +34,7 @@ export default {
         category_id: "",
         id: "",
         name: "",
-        image: "",
+        img: "",
         price: "",
       }
     }
@@ -45,7 +45,7 @@ export default {
         this.item.category_id === "" ||
         this.item.id === "" ||
         this.item.name === "" ||
-        this.item.image === "" ||
+        this.item.img === "" ||
         this.item.price === "" 
       ) {
         return false;
