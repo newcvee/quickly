@@ -470,25 +470,25 @@ first_order = Order(order_id = "1_id",
     order_date= "21/22/2222",
     order_price = "999.99",
     order_state = "waiting",
-    order_description = "Hey"
+    order_items = ["1", "2", "3", "4"]
 )
 second_order = Order(order_id = "2_id",
     order_date= "21/22/2222",
     order_price = "999.99",
     order_state = "waiting",
-    order_description = "Hey"
+    order_items = ["1", "2", "3", "4"]
 )
 third_order = Order(order_id = "3_id",
     order_date= "21/22/2222",
     order_price = "999.99",
     order_state = "waiting",
-    order_description = "Hey"
+    order_items = ["1", "2", "3", "4"]
 )
 fourth_order = Order(order_id = "4_id",
     order_date= "21/22/2222",
     order_price = "999.99",
     order_state = "waiting",
-    order_description = "Hey"
+    order_items = ["1", "2", "3", "4"]
 )
 
 orders_repository.save_order(first_order)
