@@ -1,20 +1,32 @@
 import sqlite3
+from src.domain.item import Item, ItemsRepository
+
+
+database_path = "data/database.db"
 
 
 class Order:
-    def __init__(self, order_id, order_date, order_price, order_state, order_description):
+    def __init__(self, order_id, order_date, order_price, order_state, order_items=None):
         self.order_id = order_id
         self.order_date = order_date
         self.order_price = order_price
         self.order_state = order_state
-        self.order_description = order_description
+        if not order_items:
+            order_items = ItemsRepository(database_path).get_order_items_by_event(id)
+        self.order_items = order_items
+
+    def create_conn(self):
+        conn = sqlite3.connect(self.database_path)
+        conn.row_factory = sqlite3.Row
+        return conn
 
     def to_dict(self):
         return {"order_id": self.order_id,
         "order_date": self.order_date,
         "order_price": self.order_price,
         "order_state": self.order_state,
-        "order_description": self.order_description}
+        "order_items": self.order_items if self.order_items else [],
+        }
 
 
 class OrdersRepository:
@@ -34,7 +46,7 @@ class OrdersRepository:
                 order_date VARCHAR,
                 order_price NUMERIC,
                 order_state VARCHAR,
-                order_description VARCHAR
+                order_items TEXT
             )
         """
         conn = self.create_conn()
@@ -44,8 +56,8 @@ class OrdersRepository:
 
 
     def save_order(self, orders):
-        sql = """insert into orders (order_id, order_date, order_price, order_state, order_description) values (
-            :order_id, :order_date, :order_price, :order_state, :order_description
+        sql = """insert into orders (order_id, order_date, order_price, order_state) values (
+            :order_id, :order_date, :order_price, :order_state
         ) """
         conn = self.create_conn()
         cursor = conn.cursor()

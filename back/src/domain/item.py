@@ -29,7 +29,7 @@ class ItemsRepository:
         return conn
 
     def init_tables(self):
-        sql = """
+        sql1 = """
             create table if not exists items (
                 id VARCHAR PRIMARY KEY,
                 name VARCHAR,
@@ -37,12 +37,26 @@ class ItemsRepository:
                 price NUMERIC,
                 category_id VARCHAR FOREING KEY 
                 REFERENCES categories (category_id)
+            );
+          create table if not exists orderitems(
+                order_id VARCHAR,
+                id VARCHAR,
+                FOREIGN KEY (order_id) REFERENCES orders(order_id),
+                FOREIGN KEY (id) REFERENCES items(id)
             )
-        """
+            """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.executescript(sql1)
+        conn.commit()
+    
+    def order_items_table(self):
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
+    
+
 
     def get_item(self):
         sql = """select * from items"""
@@ -105,6 +119,18 @@ class ItemsRepository:
         
         return result
     
+    def get_items_by_order(self, order_id):
+        conn= self.create_conn()
+        cursor = conn.cursor()
+        sql_items = """SELECT i.id, i.name i.price
+            from order-items oi, items i
+            WHERE oi.category_id = i.category_id and id = :id"""
+        cursor.execute(sql_items, {"id": order_id})
+        items = cursor.fetchall()
+        items = [Item(**item).to_dict() for item in items]
+        conn.close()
+        return items
+    
     def save(self, items):
         sql = """insert into items (id, name, img, price, category_id) values (
             :id, :name, :img, :price, :category_id
@@ -113,5 +139,20 @@ class ItemsRepository:
         cursor = conn.cursor()
         cursor.execute(sql, items.to_dict())
         conn.commit()
+    def save_order_items(self, order_id, items):
+        sql="""
+        DELETE from orderitems WHERE id= :id
+        """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(
+            sql,
+            {"order_id": order_id}
+        )
+        conn.commit()
+        sql_order_items= """ INSERT orderitems (order_id, id) VALUES (:orde_id, :id) """
 
-        
+        for item in items:
+            cursor.execute(sql_order_items, {"order_id": order_id, "id": id})
+        conn.commit()
+        conn.close()
