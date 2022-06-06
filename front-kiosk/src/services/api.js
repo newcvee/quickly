@@ -1,6 +1,19 @@
 import config from "@/config.js"
 
 
+
+export async function sendOrder(order){
+  const settings = {
+    method: "POST",
+    body: JSON.stringify(order),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  await fetch(`${config.API_PATH}/orders`, settings);
+
+}
+
 export async function getCategories() {
   const settings = {
     method: "GET",

@@ -9,3 +9,8 @@ export function AddItemsToCart(item){
 export function sendItemsToCart(){
     return cartItems
 }
+export function countItems(){
+    let len= this.cartItemsvar.length;
+    return len
+
+}

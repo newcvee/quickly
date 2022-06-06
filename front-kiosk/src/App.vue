@@ -2,13 +2,29 @@
   <div id="nav">
     <p @click="goToHome">Home</p>
     <p @click="goToCategories">Categorías</p>
-    <p @click="goToCart">Cart</p>
+    <p @click="goToCart">Cart </p>
+    <p>{{cartItemsNumber()}}</p>
+    
   </div>
   <router-view />
 </template>
 <script>
+import { countItems } from "/src/services/cart.js";
 export default {
+   data(){
+    return{
+    }
+  },
+  mounted(){
+    this.cartItemsNumber()
+  },
   methods: {
+    async cartItemsNumber() {
+      let cartLength = await countItems();
+      let len= cartLength.length;
+      return len;
+    },
+
     goToHome() {
       this.$router.push("/");
     },

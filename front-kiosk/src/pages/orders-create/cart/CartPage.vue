@@ -13,11 +13,11 @@
     </div>
   <div class="paying-button" @click="makeAnOrder">PAY</div>
   </div>
-  {{$data}}
 </template>
 
 <script>
 import { sendItemsToCart } from "@/services/cart.js";
+import { sendOrder } from "@/services/api.js";
 import { v4 as uuidv4 } from "uuid";
 
 export default {
@@ -30,7 +30,7 @@ export default {
         order_date: "",
         order_price: 0,
         order_state: "waiting",
-        order_description: "",
+        order_items: "",
       },
     };
   },
@@ -45,7 +45,7 @@ export default {
       for (let item of this.itemsCart){
         cartPrice = cartPrice + item["price"];
       }
-      console.log(cartPrice)
+      // console.log(cartPrice)
       return cartPrice.toFixed(2);
     },
     CartItems() {
@@ -57,15 +57,16 @@ export default {
 
       // parseFloat(item["price"])
       // return total.toFixed(2)
-
     
-    makeAnOrder(){
+    async makeAnOrder(){
       this.order.order_id = uuidv4();
       let today = new Date().toLocaleDateString()
       this.order.order_date = today;
-      this.order.order_description = this.itemsCart
       this.order.order_price = this.calculateTotalCartPrice()
+      this.order.order_items = this.itemsCart 
+      await sendOrder(this.order);
     },
+
   },
 };
 </script>
