@@ -94,4 +94,20 @@ class CategoriesRepository:
         cursor.execute(sql,{"category_id":categories.category_id,"name":categories.name,"image":categories.image} )
         conn.commit()
 
-  
+
+    
+    def modify_category(self, category_id, categories):
+        sql = """
+            UPDATE categories
+            SET category_id= :category_id, name= :name, image= :image
+            WHERE category_id = :category_id
+        """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        params = categories.to_dict()
+        params["category_id"] = category_id
+        cursor.execute(sql, params)
+        conn.commit()
+        conn.close()
+
+
