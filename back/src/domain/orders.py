@@ -6,13 +6,14 @@ database_path = "data/database.db"
 
 
 class Order:
-    def __init__(self, order_id, order_date, order_price, order_state, order_items=None):
+    def __init__(self, order_id, order_number, order_date, order_price, order_state, order_items=None):
         self.order_id = order_id
+        self.order_number = order_number
         self.order_date = order_date
         self.order_price = order_price
         self.order_state = order_state
         if not order_items:
-            order_items = ItemsRepository(database_path).get_order_items_by_event(id)
+            order_items = ItemsRepository(database_path).get_items_by_order(order_id)
         self.order_items = order_items
 
     def create_conn(self):
@@ -22,6 +23,7 @@ class Order:
 
     def to_dict(self):
         return {"order_id": self.order_id,
+        "order_number": self.order_number,
         "order_date": self.order_date,
         "order_price": self.order_price,
         "order_state": self.order_state,
@@ -43,6 +45,7 @@ class OrdersRepository:
         sql = """
             create table if not exists orders (
                 order_id VARCHAR PRIMARY KEY,
+                order_number VARCHAR,
                 order_date VARCHAR,
                 order_price NUMERIC,
                 order_state VARCHAR,
@@ -56,13 +59,17 @@ class OrdersRepository:
 
 
     def save_order(self, orders):
-        sql = """insert into orders (order_id, order_date, order_price, order_state) values (
-            :order_id, :order_date, :order_price, :order_state
+        sql = """insert into orders (order_id, order_number, order_date, order_price, order_state) values (
+            :order_id, :order_number, :order_date, :order_price, :order_state
         ) """
+        
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, orders.to_dict())
+        params = orders.to_dict()
+        cursor.execute(sql, params)
         conn.commit()
+        conn.close()
+        return ""
 
     def get_orders(self):
         sql="""select * from orders"""
@@ -75,6 +82,22 @@ class OrdersRepository:
         for item in data:
             order = Order(**item)
             result.append(order)
+        conn.close()
         return result
+    
+    def get_order_by_id(self, order_id):
+        sql = """SELECT * FROM orders WHERE order_id=:order_id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"order_id": order_id})
+
+        data = cursor.fetchone()
+
+        if data is not None:
+            order = Order(**data)
+        else:
+            order = None
+            
+        return order
 
     

@@ -467,28 +467,80 @@ categories_repository.save_category(bebidas_category)
 
 
 first_order = Order(order_id = "1_id",
+    order_number = 1,
     order_date= "21/22/2222",
-    order_price = "999.99",
+    order_price = 999.99,
     order_state = "waiting",
-    order_items = ["1", "2", "3", "4"]
+    order_items = [{
+                "id" : "1",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            },{
+                "id" : "3",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            }]
 )
 second_order = Order(order_id = "2_id",
+    order_number = 2,
     order_date= "21/22/2222",
-    order_price = "999.99",
+    order_price = 999.99,
     order_state = "waiting",
-    order_items = ["1", "2", "3", "4"]
+    order_items = [{
+                "id" : "1",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            },{
+                "id" : "3",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            }]
 )
 third_order = Order(order_id = "3_id",
+        order_number = 3,
     order_date= "21/22/2222",
-    order_price = "999.99",
-    order_state = "waiting",
-    order_items = ["1", "2", "3", "4"]
+    order_price = 999.99,
+    order_state = "doing",
+    order_items = [{
+                "id" : "1",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            },{
+                "id" : "3",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            }]
 )
 fourth_order = Order(order_id = "4_id",
+    order_number = 5,
     order_date= "21/22/2222",
-    order_price = "999.99",
-    order_state = "waiting",
-    order_items = ["1", "2", "3", "4"]
+    order_price = 999.99,
+    order_state = "done",
+    order_items = [{
+                "id" : "1",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            },{
+                "id" : "3",
+                "name" : "test menu ",
+                "img" : "h7CEF3E4A60287C95",
+                "price" : 10.95,
+                "category_id" : "3"   
+            }]
 )
 
 orders_repository.save_order(first_order)

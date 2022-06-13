@@ -99,12 +99,27 @@ def create_app(repositories):
 
     @app.route("/api/orders", methods=["POST"])
     def orders_post():
-        body = request.json
-        order = Order(**body)
+        data = request.json
+        # print("********************************", data)
+        order = Order(**data)
+        order_items = data["order_items"]
+        order_id = data["order_id"]
+        # order_items_list = []
+        # for item in order_items:
+        #     order_items_list.append(item["id"])
+        # print("<<<<<<<<<<<<<<<<<<", order_items_list)
+        
         repositories["orders"].save_order(order)
-        repositories["items"].save_order_items(id, body["order_items"])
+        repositories["items"].save_order_items(order_id, order_items)
 
-        return ""
+        return "", 200
+        
+    
+    @app.route("/api/orders/<order_id>", methods=["GET"])
+    def order_get_by_id(order_id):
+        order = repositories["orders"].get_order_by_id(order_id)
+        return object_to_json(order), 200
+
     
     
 

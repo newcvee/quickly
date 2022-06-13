@@ -1,5 +1,4 @@
 import sqlite3
-from unicodedata import category, name
 
 
 class Item:
@@ -38,7 +37,7 @@ class ItemsRepository:
                 category_id VARCHAR FOREING KEY 
                 REFERENCES categories (category_id)
             );
-          create table if not exists orderitems(
+            create table if not exists orderitems(
                 order_id VARCHAR,
                 id VARCHAR,
                 FOREIGN KEY (order_id) REFERENCES orders(order_id),
@@ -49,13 +48,7 @@ class ItemsRepository:
         cursor = conn.cursor()
         cursor.executescript(sql1)
         conn.commit()
-    
-    def order_items_table(self):
-        conn = self.create_conn()
-        cursor = conn.cursor()
-        cursor.execute(sql)
-        conn.commit()
-    
+        conn.close()    
 
 
     def get_item(self):
@@ -65,7 +58,7 @@ class ItemsRepository:
         cursor.execute(sql)
 
         data = cursor.fetchone()
-
+        
         return Item(id=data["id"],
         name = data["name"],
         img = data["img"],
@@ -82,6 +75,7 @@ class ItemsRepository:
         for item in data:
             item = Item(**item)
             result.append(item)
+        conn.close()
         return result
 
 
@@ -122,10 +116,10 @@ class ItemsRepository:
     def get_items_by_order(self, order_id):
         conn= self.create_conn()
         cursor = conn.cursor()
-        sql_items = """SELECT i.id, i.name i.price
-            from order-items oi, items i
-            WHERE oi.category_id = i.category_id and id = :id"""
-        cursor.execute(sql_items, {"id": order_id})
+        sql_items = """SELECT *
+            from orderitems, items 
+            WHERE orderitems.id = items.id and order_id = :order_id"""
+        cursor.execute(sql_items, {"order_id": order_id})
         items = cursor.fetchall()
         items = [Item(**item).to_dict() for item in items]
         conn.close()
@@ -139,20 +133,20 @@ class ItemsRepository:
         cursor = conn.cursor()
         cursor.execute(sql, items.to_dict())
         conn.commit()
-    def save_order_items(self, order_id, items):
-        sql="""
-        DELETE from orderitems WHERE id= :id
-        """
+
+    def save_order_items(self, order_id, order_items):
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(
-            sql,
-            {"order_id": order_id}
-        )
-        conn.commit()
-        sql_order_items= """ INSERT orderitems (order_id, id) VALUES (:orde_id, :id) """
+        sql_order_items= """ INSERT into orderitems (order_id, id) VALUES (:order_id, :id) """
 
-        for item in items:
-            cursor.execute(sql_order_items, {"order_id": order_id, "id": id})
+        print("******************************", order_items)
+        
+        print("******************************", order_id)
+
+        for item in order_items:
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!", item)
+            item_id = item.get('id')
+            cursor.execute(sql_order_items, {"order_id": order_id, "id": item_id})
+        
         conn.commit()
         conn.close()
