@@ -150,3 +150,20 @@ class ItemsRepository:
         
         conn.commit()
         conn.close()
+    
+
+def modify_item(self, id, items):
+        sql = """
+            UPDATE items
+            SET id= :id, name= :name, img= :img, price= :price, category_id= :category_id
+            WHERE id = :id
+        """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        params = items.to_dict()
+        params["id"] = id
+        cursor.execute(sql, params)
+        conn.commit()
+        conn.close()
+
+
