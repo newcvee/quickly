@@ -119,6 +119,14 @@ def create_app(repositories):
     def order_get_by_id(order_id):
         order = repositories["orders"].get_order_by_id(order_id)
         return object_to_json(order), 200
+    
+    @app.route("/api/categories/<category_id>", methods=["PUT"])
+    def category_modify(category_id):
+        data = request.json
+        category = Categories(**data)
+        repositories["categories"].modify_category(category_id, category)
+
+        return ("", 200)
 
     
     
