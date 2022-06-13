@@ -33,7 +33,7 @@ export default {
 button{
   margin: 50px;
   font-family: "Roboto Mono", monospace;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: rgb(22, 32, 67);
   letter-spacing: 1px;

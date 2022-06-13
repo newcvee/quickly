@@ -10,7 +10,7 @@ export function sendItemsToCart(){
     return cartItems
 }
 export function countItems(){
-    let len= this.cartItemsvar.length;
+    let len= this.cartItems.length;
     return len
 
 }

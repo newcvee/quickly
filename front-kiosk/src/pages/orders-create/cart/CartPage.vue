@@ -13,6 +13,7 @@
     </div>
   <div class="paying-button" @click="makeAnOrder">PAY</div>
   </div>
+  {{$data}}
 </template>
 
 <script>
@@ -27,10 +28,11 @@ export default {
       itemsCart: [],
       order: {
         order_id: "",
+        order_number: "",
         order_date: "",
         order_price: 0,
         order_state: "waiting",
-        order_items: "",
+        order_items: [],
       },
     };
   },
@@ -60,11 +62,14 @@ export default {
     
     async makeAnOrder(){
       this.order.order_id = uuidv4();
+      let number = Math.floor(Math.random() * 100)
+      this.order.order_number = number;
       let today = new Date().toLocaleDateString()
       this.order.order_date = today;
       this.order.order_price = this.calculateTotalCartPrice()
       this.order.order_items = this.itemsCart 
       await sendOrder(this.order);
+      alert("VE AL MO");
     },
 
   },
