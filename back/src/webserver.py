@@ -127,6 +127,13 @@ def create_app(repositories):
         repositories["categories"].modify_category(category_id, category)
 
         return ("", 200)
+        
+    @app.route("/api/items/<id>", methods=["PUT"])
+    def item_modify(id):
+        data = request.json
+        item = Item(**data)
+        repositories["items"].modify_category(id, item)
+        return ("", 200)
 
     
     
