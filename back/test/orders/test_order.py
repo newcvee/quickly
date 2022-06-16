@@ -6,14 +6,14 @@ from src.domain.orders import OrdersRepository, Order
 from src.domain.item import Item, ItemsRepository
 
 
-# def test_should_return_empty_list_of_orders():
-#     orders_repository = OrdersRepository(temp_file())
-#     app = create_app(repositories={"orders": orders_repository})
-#     client = app.test_client()
+def test_should_return_empty_list_of_orders():
+    orders_repository = OrdersRepository(temp_file())
+    app = create_app(repositories={"orders": orders_repository})
+    client = app.test_client()
 
-#     response = client.get("/api/orders")
+    response = client.get("/api/orders")
 
-#     assert response.json == []
+    assert response.json == []
 
 
 

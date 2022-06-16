@@ -101,14 +101,18 @@ def create_app(repositories):
     def orders_post():
         data = request.json
         # print("********************************", data)
-        order = Order(**data)
+        order = Order(order_id= data["order_id"],
+            order_number= data["order_number"],
+            order_date= data["order_date"],
+            order_price= data["order_price"],
+            order_state = data["order_state"])
         order_items = data["order_items"]
         order_id = data["order_id"]
         # order_items_list = []
         # for item in order_items:
         #     order_items_list.append(item["id"])
         # print("<<<<<<<<<<<<<<<<<<", order_items_list)
-        
+
         repositories["orders"].save_order(order)
         repositories["items"].save_order_items(order_id, order_items)
 
