@@ -114,16 +114,22 @@ class ItemsRepository:
         return result
     
     def get_items_by_order(self, order_id):
+        sql_items = """SELECT *
+            from orderitems
+            WHERE order_id = :order_id"""
+
         conn= self.create_conn()
         cursor = conn.cursor()
-        sql_items = """SELECT *
-            from orderitems, items 
-            WHERE orderitems.id = items.id and order_id = :order_id"""
         cursor.execute(sql_items, {"order_id": order_id})
-        items = cursor.fetchall()
-        items = [Item(**item).to_dict() for item in items]
+        data = cursor.fetchall()
+        result = []
+        for i in data:
+            orderitem= Item(**i)
+
+            result.append(orderitem)
+        # items = [Item(**item).to_dict() for item in data]
         conn.close()
-        return items
+        return result
     
     def save(self, items):
         sql = """insert into items (id, name, img, price, category_id) values (
@@ -139,31 +145,19 @@ class ItemsRepository:
         cursor = conn.cursor()
         sql_order_items= """ INSERT into orderitems (order_id, id) VALUES (:order_id, :id) """
 
-        print("******************************", order_items)
+        # print("******************************", order_items)
         
-        print("******************************", order_id)
+        # print("++++++++++++++++++++++++++++++", order_id)
 
         for item in order_items:
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!", item)
             item_id = item.get('id')
-            cursor.execute(sql_order_items, {"order_id": order_id, "id": item_id})
+            structure = {"order_id": order_id, "id": item_id}
+            cursor.execute(sql_order_items, structure)
+            print("aaaaaaaaaaaaaaaaaaaaaaaaa", structure)
         
         conn.commit()
         conn.close()
     
 
-def modify_item(self, id, items):
-        sql = """
-            UPDATE items
-            SET id= :id, name= :name, img= :img, price= :price, category_id= :category_id
-            WHERE id = :id
-        """
-        conn = self.create_conn()
-        cursor = conn.cursor()
-        params = items.to_dict()
-        params["id"] = id
-        cursor.execute(sql, params)
-        conn.commit()
-        conn.close()
 
 

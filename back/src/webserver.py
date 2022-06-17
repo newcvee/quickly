@@ -5,9 +5,9 @@ from flask_cors import CORS
 from flask import Flask, request, jsonify
 
 from src.lib.utils import object_to_json
-from src.domain.item import Item
-from src.domain.categories import Categories
-from src.domain.orders import Order
+from src.domain.item import Item, ItemsRepository
+from src.domain.categories import Categories, CategoriesRepository
+from src.domain.orders import Order, OrdersRepository
 
 
 def create_app(repositories):
@@ -105,16 +105,12 @@ def create_app(repositories):
             order_number= data["order_number"],
             order_date= data["order_date"],
             order_price= data["order_price"],
-            order_state = data["order_state"])
-        order_items = data["order_items"]
+            order_state = data["order_state"]
+            )
+            
         order_id = data["order_id"]
-        # order_items_list = []
-        # for item in order_items:
-        #     order_items_list.append(item["id"])
-        # print("<<<<<<<<<<<<<<<<<<", order_items_list)
-
         repositories["orders"].save_order(order)
-        repositories["items"].save_order_items(order_id, order_items)
+        repositories["items"].save_order_items(order_id, data["order_items"])
 
         return "", 200
         
@@ -124,22 +120,9 @@ def create_app(repositories):
         order = repositories["orders"].get_order_by_id(order_id)
         return object_to_json(order), 200
     
-    @app.route("/api/categories/<category_id>", methods=["PUT"])
-    def category_modify(category_id):
-        data = request.json
-        category = Categories(**data)
-        repositories["categories"].modify_category(category_id, category)
-
-        return ("", 200)
-        
-    @app.route("/api/items/<id>", methods=["PUT"])
-    def item_modify(id):
-        data = request.json
-        item = Item(**data)
-        repositories["items"].modify_category(id, item)
-        return ("", 200)
-
-    
-    
+    @app.route("/api/orders/orderitems/<order_id>", methods=["GET"])
+    def orderitems_get_by_order(order_id):
+        orderitems= repositories["items"].get_items_by_order(order_id)
+        return object_to_json(orderitems), 200
 
     return app

@@ -14,6 +14,7 @@ repositories = {
     "ingredients": IngredientsRepository(database_path),
     "categories": CategoriesRepository(database_path),
     "orders" : OrdersRepository(database_path),
+    "orderitems" : ItemsRepository(database_path),
 }
 
 app = create_app(repositories)
