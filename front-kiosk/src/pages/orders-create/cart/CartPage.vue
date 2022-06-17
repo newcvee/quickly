@@ -47,7 +47,6 @@ export default {
       for (let item of this.itemsCart){
         cartPrice = cartPrice + item["price"];
       }
-      // console.log(cartPrice)
       return cartPrice.toFixed(2);
     },
     CartItems() {
@@ -59,7 +58,7 @@ export default {
 
       // parseFloat(item["price"])
       // return total.toFixed(2)
-    
+
     async makeAnOrder(){
       this.order.order_id = uuidv4();
       let number = Math.floor(Math.random() * 100)
@@ -67,9 +66,9 @@ export default {
       let today = new Date().toLocaleDateString()
       this.order.order_date = today;
       this.order.order_price = this.calculateTotalCartPrice()
-      this.order.order_items = this.itemsCart 
+      this.order.order_items = this.itemsCart
       await sendOrder(this.order);
-      alert("VE AL MO");
+      this.itemsCart= []
     },
 
   },
