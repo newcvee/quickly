@@ -5,16 +5,13 @@
       <label for="category-name">What category is your item from:</label>
       <input type="text" v-model="item.category_id"> 
 
-      <label for="category-name">Item id:</label>
-      <input type="text" v-model="item.id">
-
-      <label for="category-name">Name:</label>
+      <label for="item-name">Item name:</label>
       <input type="text" v-model="item.name">
 
-      <label for="category-image">Image:</label>
+      <label for="item-image">Item image:</label>
       <input type="text" v-model="item.img">
 
-      <label for="category-image">Price:</label>
+      <label for="item-image">Item price:</label>
       <input type="text" v-model="item.price">
 
       <button @click.prevent="addNewItemForm">Submit</button>
@@ -43,7 +40,6 @@ export default {
     isValidItemForm() {
       if (
         this.item.category_id === "" ||
-        this.item.id === "" ||
         this.item.name === "" ||
         this.item.img === "" ||
         this.item.price === "" 
@@ -61,7 +57,7 @@ export default {
       await addNewItem(this.item);
       alert("Item added");
       console.log("item added");
-      // this.$router.push("/categories");
+      this.$router.push("/categories");
     },
   }
 

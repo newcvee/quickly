@@ -21,11 +21,7 @@ const routes = [
     name: 'Add Category',
     component: () => import('@/pages/categories/AddCategoryPage.vue')
   },
-  {
-    path: '/modify-category',
-    name: 'Modify Category',
-    component: () => import('@/pages/categories/ModifyCategoryPage.vue')
-  },
+
   {
     path: '/category/items/:category_id',
     name: 'Items',

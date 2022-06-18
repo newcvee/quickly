@@ -28,7 +28,7 @@ export default {
          this.$router.push("/items/" + dish.id)
         },
         goToAddItemPage(){
-            this.$router.push("/add-dish");
+            this.$router.push("/add-item");
         },
     }
 

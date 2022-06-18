@@ -5,7 +5,6 @@
           {{category.name}}
           {{category.image}}
       </article>
-    <button @click="goToModifyCategoryPage">Modify</button>
   </section>
   {{$data}}
 </template>
@@ -36,10 +35,7 @@ export default {
             this.$router.push("/add-category");
 
         },
-        goToModifyCategoryPage(){
-            this.$router.push("/modify-category");
-            console.log("Modified")
-        }
+
    
 
     }
