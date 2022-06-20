@@ -1,7 +1,9 @@
 <template>
+<div class="goBack" @click="$router.go(-1)">{{back}}</div>
 <section  class="item-container">
     <article class="item" v-for="(item, index) in items" :key="index">
-        <p>{{item.img}}</p>
+        <!-- <p>{{item.img}}</p> -->
+        <img :src="item.img" />
         <p>{{item.name}}</p>
         <button @click="AddToCart(item)">Add to cart</button>
     </article>
@@ -17,6 +19,7 @@ export default {
     data(){
         return { 
             items: [],
+            back: "< volver",
             };
     },
     mounted() {
@@ -27,15 +30,8 @@ export default {
             let categoryId = this.$route.params.category_id;
             this.items = await getItemsByCategory(categoryId);
         },
-
-        // enterItemDetail(item){            
-        //  this.$router.push("/items/" + item.id)
-        // },
         AddToCart(item){
-            console.log(item)
             AddItemsToCart(item)
-            
-
         },
         
     }
@@ -50,6 +46,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    
 
 }
 .item-container{
@@ -57,15 +54,10 @@ export default {
     background-color: rgb(22, 32, 67);
     margin: 0;
     padding: 0;
-    font-family: Montserrat;
     display: flex;
     flex-direction: row;
-    gap: 1em;
-    height: fit-content;
-    width: 100%;
-    grid-auto-rows: 18rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 50rem), 1fr));
-    margin: 0em 2em 1.5em 1.5em;
+    height: 100vh;
+    width: 100vw;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -76,11 +68,29 @@ export default {
     background: rgb(241, 237, 237);
     box-shadow: 0px 0px 8px rgb(184, 181, 181);
     border-radius: 10px;
-    font-size: larger;
+    font-size: 1.5em;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 40vh;
+    height: 20vh;
     margin: 1em;
 }
+button{
+  margin: 50px;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 900;
+  color: rgb(22, 32, 67);
+  letter-spacing: 1px;
+  padding: 13px 50px 13px;
+  outline: 0;
+  border: thick double rgb(22, 32, 67);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgb(109,154,149);
+  width: 30vw;
+  height: 20vh;
+}
+
 
 </style>
