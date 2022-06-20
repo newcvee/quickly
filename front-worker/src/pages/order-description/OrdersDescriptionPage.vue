@@ -34,8 +34,7 @@ export default {
 <style>
 article {
     border: 1px solid black;
-    margin: 0.5em 0.5em 0.5em;
-    
+    margin: 0.5em 0.5em 0.5em; 
 }
 
 </style>

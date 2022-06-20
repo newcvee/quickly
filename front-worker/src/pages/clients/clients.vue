@@ -1,38 +1,34 @@
 <template>
   <main>
+
     <section class="changing-states">
       <section class="waitlist-state">
-          <h3 class="stateTitle">Waitlist</h3>
-        <div class="order" v-for="order in waiting" :key="order.order_id">
+        <div v-for="order in waiting" :key="order.order_id">
           <p>{{ order.order_state }}</p>
           <p>{{ order.order_number }}</p>
-          <button @click="stateChange(order)">start</button>
         </div>
       </section>
       <section class="doing-state">
-          <h3 class="stateTitle">Doing</h3>
-          <div class="order" v-for="order in doing" :key="order.order_id">
+          <div v-for="order in doing" :key="order.order_id">
             <p>{{ order.order_state }}</p>
             <p>{{ order.order_number }}</p>
-          <button @click="stateChange(order)">start</button>
           </div>
         </section>
       
     </section>
-    <section  class="done-state">
-          <h3 class="stateTitle">Done</h3>
-        <div class="order" v-for="order in done" :key="order.order_id">
+    <section class="done-state">
+        <div v-for="order in done" :key="order.order_id">
             <p>{{ order.order_state }}</p>
             <p>{{ order.order_number }}</p>
         </div>
     </section>
+    {{ $data }}
   </main>
+  <button @click="waitListOrder">go</button>
 </template>
 
 <script>
 import { getOrders } from "@/services/api.js";
-import { updateOrder } from "@/services/api.js";
-
 
 export default {
   name: "Order",
@@ -45,10 +41,7 @@ export default {
     };
   },
   mounted() {
-    // setInterval(()=>{
-      this.loadOrders();
-    // },500);
-    
+    this.loadOrders()
   },
   methods: {
     async loadOrders() {
@@ -59,35 +52,24 @@ export default {
 
     },
     waitListOrder() {
+      console.log("waitListOrder", this.orders);
       this.waiting = this.orders.filter((order) => {
+        console.log(order.order_state);
         return order.order_state === "waiting";
       });
     },
     doingListOrder(){
         this.doing = this.orders.filter((order) => {
+        console.log(order.order_state);
         return order.order_state === "doing";
       });
     },
     doneListOrder(){
         this.done = this.orders.filter((order) => {
+        console.log(order.order_state);
         return order.order_state === "done";
       });
-    },
-    async stateChange(order){
-        if (order.order_state === "waiting"){
-            order.order_state = "doing"
-            let orderId = order.order_id;
-            await updateOrder(order, orderId);
-        }
-        if (order.order_state === "doing"){
-            order.order_state = "done"
-            let orderId = order.order_id;
-            await updateOrder(order, orderId);
-
-        }
     }
-    // let eventId = this.$route.params.id;
-    //     await modifyEvent(this.event, eventId);
   },
 };
 </script>
@@ -103,38 +85,23 @@ main {
   flex-direction: column;
 }
 .changing-states {
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
 }
 .waitlist-state {
   width: 50vw;
   height: 50vh;
-  border: 1px solid black;
-  overflow-y: scroll
+  background-color: yellow;
 }
 .doing-state {
   width: 50vw;
   height: 50vh;
-  border: 1px solid black;
-  overflow-y: scroll
+  background-color: blue;
 }
 .done-state {
   width: auto;
   height: 35vh;
-  border: 1px solid black;
-  overflow-y: scroll
-}
-.order{
-    border: 1px solid black;
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between;
-    margin: 5%;
-    padding: 1%;
-
-}
-.stateTitle{
-  position: sticky;
-  top: 0;
+  background-color: red;
 }
 </style>
