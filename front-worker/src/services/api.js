@@ -18,6 +18,6 @@ export async function updateOrder(order, order_id){
       "Content-Type": "application/json"
     },
   };
-  await fetch(`${config.API_PATH}/order/${order_id}`, settings);
+  await fetch(`${config.API_PATH}/orders/${order_id}`, settings);
 }
 

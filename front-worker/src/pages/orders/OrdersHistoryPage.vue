@@ -6,7 +6,7 @@
         <div class="order" v-for="order in waiting" :key="order.order_id">
           <p>{{ order.order_state }}</p>
           <p>{{ order.order_number }}</p>
-          <button @click="stateChange(order)">start</button>
+          <button @click="stateChangeToDoing(order)">empezar</button>
         </div>
       </section>
       <section class="doing-state">
@@ -14,7 +14,7 @@
           <div class="order" v-for="order in doing" :key="order.order_id">
             <p>{{ order.order_state }}</p>
             <p>{{ order.order_number }}</p>
-          <button @click="stateChange(order)">start</button>
+          <button @click="stateChangeToDone(order)">terminar</button>
           </div>
         </section>
       
@@ -45,9 +45,9 @@ export default {
     };
   },
   mounted() {
-    // setInterval(()=>{
+    setInterval(()=>{
       this.loadOrders();
-    // },500);
+    },500);
     
   },
   methods: {
@@ -73,18 +73,19 @@ export default {
         return order.order_state === "done";
       });
     },
-    async stateChange(order){
-        if (order.order_state === "waiting"){
-            order.order_state = "doing"
-            let orderId = order.order_id;
-            await updateOrder(order, orderId);
-        }
-        if (order.order_state === "doing"){
-            order.order_state = "done"
-            let orderId = order.order_id;
-            await updateOrder(order, orderId);
-
-        }
+    async stateChangeToDoing(order){
+  
+      order.order_state = "doing"
+      let orderId = order.order_id;
+      console.log("This is the id",orderId, "and the order", order)
+      await updateOrder(order, orderId);
+  
+    
+    },
+    async stateChangeToDone(order){
+      order.order_state = "done"
+      let orderId = order.order_id;
+      await updateOrder(order, orderId);
     }
     // let eventId = this.$route.params.id;
     //     await modifyEvent(this.event, eventId);
@@ -120,7 +121,7 @@ main {
 }
 .done-state {
   width: auto;
-  height: 35vh;
+  height: 45vh;
   border: 1px solid black;
   overflow-y: scroll
 }

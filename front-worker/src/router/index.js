@@ -3,15 +3,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
 
   {
-    path: '/orders-history',
+    path: '/',
     name: 'Orders history',
     component: () => import('@/pages/orders/OrdersHistoryPage.vue')
   },
 
   {
-    path: '/order-description',
+    path: '/clients-orders',
     name: 'Orders Description',
-    component: () => import('@/pages/order-description/OrdersDescriptionPage.vue')
+    component: () => import('@/pages/clients/OrdersDescriptionPage.vue')
   },
 
   
