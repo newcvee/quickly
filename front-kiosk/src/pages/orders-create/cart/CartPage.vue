@@ -67,7 +67,9 @@ export default {
       this.order.order_price = this.calculateTotalCartPrice()
       this.order.order_items = this.itemsCart
       await sendOrder(this.order);
+      // alert("Pedido terminado. Por favor ve al mostrador a pagar.");
       this.itemsCart= []
+      // this.$router.push("/")
     },
 
   },
