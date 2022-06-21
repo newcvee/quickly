@@ -28,7 +28,7 @@ export default {
         category_id: "",
         id: "",
         name: "",
-        img: "",
+        img: "hi",
         price: "",
       },
       back: "< volver",
