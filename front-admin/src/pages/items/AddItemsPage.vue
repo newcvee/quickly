@@ -9,9 +9,6 @@
       <label for="item-name">Item name:</label>
       <input type="text" v-model="item.name">
 
-      <label for="item-image">Item image:</label>
-      <input type="text" v-model="item.img">
-
       <label for="item-image">Item price:</label>
       <input type="text" v-model="item.price">
 
@@ -43,7 +40,6 @@ export default {
       if (
         this.item.category_id === "" ||
         this.item.name === "" ||
-        this.item.img === "" ||
         this.item.price === "" 
       ) {
         return false;

@@ -3,12 +3,10 @@
     <div class="goBack" @click="$router.go(-1)">{{back}}</div>
     <h1>New Category</h1>
     <form>
-      <label for="category-name">Give the new category a name:</label>
+      <label for="category-name">Give the new category a id:</label>
       <input type="text" v-model="category.category_id" />
       <label for="category-name">Give your category a name:</label>
       <input type="text" v-model="category.name" />
-      <label for="category-image">Now, an image:</label>
-      <input type="text" v-model="category.image" />
       <button @click.prevent="addNewCategoryForm">Submit</button>
     </form>
     {{ data }}
@@ -35,8 +33,7 @@ export default {
     isValidCategoryForm() {
       if (
         this.category.category_id === "" ||
-        this.category.name === "" ||
-        this.category.image === ""
+        this.category.name === "" 
       ) {
         return false;
       } else {
