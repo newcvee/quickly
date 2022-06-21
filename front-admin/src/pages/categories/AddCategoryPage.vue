@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div class="goBack" @click="$router.go(-1)">{{back}}</div>
     <h1>New Category</h1>
     <form>
       <label for="category-name">Give the new category a name:</label>
@@ -21,11 +22,13 @@ export default {
   name: "add-category",
   data() {
     return {
+      back: "< volver",
       category: {
         category_id: "",
         name: "",
         image: "",
       },
+
     };
   },
   methods: {
@@ -176,6 +179,16 @@ button .red {
 label {
   margin: 0;
   flex: 1;
+}
+.goBack {
+  width: 98vw;
+  height: 5vh;
+  border: 0;
+  padding: 0;
+  margin-bottom: 1%;
+  
+  color: #2c3e50;
+  
 }
 </style>
 
