@@ -114,22 +114,17 @@ class ItemsRepository:
         return result
     
     def get_items_by_order(self, order_id):
-        sql_items = """SELECT *
-            from orderitems
-            WHERE order_id = :order_id"""
+        sql_items = """SELECT i.id, i.name, i.img, i.price, i.category_id
+            from orderitems oi, items i
+            WHERE oi.id = i.id and order_id = :order_id"""
 
         conn= self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql_items, {"order_id": order_id})
         data = cursor.fetchall()
-        result = []
-        for i in data:
-            orderitem= Item(**i)
-
-            result.append(orderitem)
-        # items = [Item(**item).to_dict() for item in data]
+        items = [Item(**item).to_dict() for item in data]
         conn.close()
-        return result
+        return items
     
     def save(self, items):
         sql = """insert into items (id, name, img, price, category_id) values (
@@ -145,16 +140,10 @@ class ItemsRepository:
         cursor = conn.cursor()
         sql_order_items= """ INSERT into orderitems (order_id, id) VALUES (:order_id, :id) """
 
-        # print("******************************", order_items)
-        
-        # print("++++++++++++++++++++++++++++++", order_id)
-
         for item in order_items:
             item_id = item.get('id')
             structure = {"order_id": order_id, "id": item_id}
-            cursor.execute(sql_order_items, structure)
-            print("aaaaaaaaaaaaaaaaaaaaaaaaa", structure)
-        
+            cursor.execute(sql_order_items, structure)        
         conn.commit()
         conn.close()
     

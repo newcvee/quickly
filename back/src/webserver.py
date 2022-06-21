@@ -124,5 +124,15 @@ def create_app(repositories):
     def orderitems_get_by_order(order_id):
         orderitems= repositories["items"].get_items_by_order(order_id)
         return object_to_json(orderitems), 200
+    
+    @app.route("/api/orders/<order_id>", methods=["PUT"])
+    def order_modify(order_id):
+        data = request.json
+        order = Order(**data)
+        order_id = data["order_id"]
+        repositories["orders"].modify_order_state(order_id, order)
+        return ("", 200)
+
+
 
     return app

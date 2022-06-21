@@ -99,5 +99,22 @@ class OrdersRepository:
             order = None
             
         return order
+    
+    def modify_order_state(self, order_id, order):
+        sql= """
+            UPDATE orders
+            SET order_state = :order_state
+            WHERE order_id = :order_id
+        """
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        params = order.to_dict()
+        print("****************", order)
+        params["order_id"] = order_id
+        cursor.execute(sql, {"order_state": order.order_state, "order_id": order_id})
+        conn.commit()
+        conn.close()
+
+
 
     
