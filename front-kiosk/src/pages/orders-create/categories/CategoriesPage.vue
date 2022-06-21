@@ -1,4 +1,5 @@
 <template>
+    <div class="goBack" @click="$router.go(-1)">{{back}}</div>
     <section class="categories">
         <div class="category-card" v-for="category in categories" :key="category.category_id" @click="enterCategory(category)">
             <p>{{category.name}}</p>
@@ -13,6 +14,7 @@ export default {
     data(){
         return { 
             categories: {},
+            back: "< volver",
             };
     },
     mounted() {
@@ -85,5 +87,17 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
+.goBack {
+    width: 100vw;
+    height: 5vh;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: rgb(218, 213, 181);
+    align-items: start;
+}
+
+
 
 </style>

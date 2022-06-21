@@ -1,19 +1,17 @@
 <template>
+  <section class="cartPage">
+    <div class="goBack" @click="$router.go(-1)">{{back}}</div>
   <div>
-    <p>"Hello, world!"</p>
-    <p>Hi</p>
     <div class="item" v-for="(item, index) in itemsCart" :key="index">
-      <p>{{ item.name }}</p>
-      <p>{{ item.price }}</p>
-      <button @click="removeItemFromCart(item)">Remove from cart</button>
+      <img :src="item.img" />
+      <p class="itemInfo">{{ item.name }}</p>
+      <p class="itemInfo">{{ item.price }}€</p>
+      <button @click="removeItemFromCart(item)">x</button>
     </div>
-    <div class="price">
-      <p>PRICE</p>
-      <p>{{calculateTotalCartPrice()}}</p>
-    </div>
-  <div class="paying-button" @click="makeAnOrder">PAY</div>
-  </div>
-  {{$data}}
+
+  <div class="paying-button" @click="makeAnOrder">PAY {{calculateTotalCartPrice()}}</div>
+  </div></section>
+
 </template>
 
 <script>
@@ -26,6 +24,7 @@ export default {
   data() {
     return {
       itemsCart: [],
+      back: "< volver",
       order: {
         order_id: "",
         order_number: "",
@@ -75,16 +74,73 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.cartPage{
+  background-color: rgb(22, 32, 67);
+  height: 100vh;
+}
 .item{
-  border: 2px solid blue;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 900;
+  width: 50vw;
+  height: 18vh;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px 10px 10px 10px;
+  margin: auto;
+  background: rgb(218, 213, 181);
+  border: thick double rgb(22, 32, 67);
+  color: rgb(22, 32, 67);
+  
 }
 
 .paying-button{
   border: 2px solid red;
   position:fixed;
   bottom:5%;
-  left:49%;
+  left:35%;
+  font-family: "Roboto Mono", monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  border: thick double rgb(22, 32, 67);
+  background-color: rgb(109,154,149);
+  width: 30vw;
+  height: 15vh;
+  border-radius: 10px;
+  color: rgb(22, 32, 67);
+  letter-spacing: 1px;
+  padding-top: 10px;
 }
 
+
+.goBack {
+  width: 98vw;
+  height: 5vh;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: rgb(218, 213, 181);
+  background-color: rgb(22, 32, 67);
+}
+img {
+  width: 30%;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+}
+button{
+  font-family: "Roboto Mono", monospace;
+  font-weight: 900;
+  font-size: 4em;
+  color: rgb(255, 255, 255);
+  letter-spacing: 1px;
+  border-radius:0 10px  10px 0;
+  position: relative;
+  background-color: rgb(201, 6, 6);
+  width: 20%;
+  height: 100%;
+  margin-left: 5%;
+}
+.itemInfo{
+  margin: auto;
+}
 </style>

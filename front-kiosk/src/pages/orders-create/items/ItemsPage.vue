@@ -2,7 +2,6 @@
 <div class="goBack" @click="$router.go(-1)">{{back}}</div>
 <section  class="item-container">
     <article class="item" v-for="(item, index) in items" :key="index">
-        <!-- <p>{{item.img}}</p> -->
         <img :src="item.img" />
         <p>{{item.name}}</p>
         <button @click="AddToCart(item)">Add to cart</button>
@@ -65,32 +64,49 @@ export default {
 
 }
 .item-container .item{
-    background: rgb(241, 237, 237);
-    box-shadow: 0px 0px 8px rgb(184, 181, 181);
+    background: rgb(218, 213, 181);
+    border: thick double rgb(22, 32, 67);
+    font-family: "Roboto Mono", monospace;
     border-radius: 10px;
-    font-size: 1.5em;
+    font-size: 130%;
+    font-weight: 900;
     display: flex;
     flex-direction: column;
     width: 40vh;
-    height: 20vh;
+    height: 40vh;
     margin: 1em;
+    color: rgb(22, 32, 67);
 }
 button{
-  margin: 50px;
   font-family: "Roboto Mono", monospace;
   font-weight: 900;
   color: rgb(22, 32, 67);
   letter-spacing: 1px;
-  padding: 13px 50px 13px;
+  padding: 5% 0 0 20%;
   outline: 0;
   border: thick double rgb(22, 32, 67);
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   background-color: rgb(109,154,149);
-  width: 30vw;
-  height: 20vh;
+  margin:auto;
+  width: 80%;
+  height: 20%;;
+}
+img {
+  width: 100%;
+  height: 70%;
+  border-radius: 10px 10px 0 0;
 }
 
+.goBack {
+    width: 100vw;
+    height: 5vh;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: rgb(218, 213, 181);
+    background-color: rgb(22, 32, 67);
+}
 
 </style>
