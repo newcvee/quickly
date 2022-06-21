@@ -9,7 +9,7 @@
       <label for="item-name">Item name:</label>
       <input type="text" v-model="item.name">
 
-      <label for="item-image">Item price:</label>
+      <label for="item-price">Item price:</label>
       <input type="text" v-model="item.price">
 
       <button @click.prevent="addNewItemForm">Submit</button>
